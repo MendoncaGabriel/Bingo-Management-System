@@ -1,0 +1,27 @@
+{
+  "name": "bingo-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.3",
+    "helmet": "^7.1.0",
+    "mongodb": "^6.4.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "mongoose": "^8.2.1"
+  }
+}
