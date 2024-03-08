@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF com Conteúdo em Páginas Alternadas</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .folha {
+            /* (210mm x 297mm) */
+           
+            box-sizing: border-box;
+            width: 209.9mm;
+            height: 296.86mm;
+            display: block;
+            background-color: gray;
+            page-break-inside: avoid;
+            page-break-after: always;
+           
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conteudo {
+            
+            color: white;
+            text-align: center;
+            padding: 20px;
+            background-image: url('https://png.pngtree.com/png-clipart/20210627/original/pngtree-simple-color-bingo-night-party-poster-png-image_6461161.jpg');
+            background-position: center;
+            background-size: 100% 100%; /* Preenche completamente a largura e altura da div */
+            height: 296.86mm;
+            position: relative;
+        
+
+        }
+        .bingoContainer {
+            position: absolute;
+            top: 25%;
+            left: 0%;
+            width: 100%;
+            margin: auto;
+            display: grid;
+            gap: 50mm;
+            grid-template-columns: repeat(2, 1fr);  /* Corrigido para garantir duas colunas */
+            z-index: 99;
+            border: 2px solid white;
+            align-items: baseline;
+        }
+
+        .bingoContainer img {
+            width: 70mm;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- container -->
+    <section class="container">
+        <!-- conteúdo -->
+        <div class="folha">
+            <div class="conteudo">
+                <h1>Conteúdo da Página 1</h1>
+                <p>Seu conteúdo vai aqui...</p>
+                <div class="bingoContainer">
+                    <img src="https://geradornv.com.br/wp-content/uploads/2023/03/cartela-bingo-75-numeros.png" alt="">
+                    <img src="https://geradornv.com.br/wp-content/uploads/2023/03/cartela-bingo-75-numeros.png" alt="">
+                    <img src="https://geradornv.com.br/wp-content/uploads/2023/03/cartela-bingo-75-numeros.png" alt="">
+                    <img src="https://geradornv.com.br/wp-content/uploads/2023/03/cartela-bingo-75-numeros.png" alt="">
+                </div>
+            </div>
+            
+        </div>
+    </section>
+</body>
+</html>
