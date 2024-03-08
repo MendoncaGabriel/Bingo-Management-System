@@ -23,9 +23,11 @@ app.set('views', __dirname + '/src/views');
 const pages = require('./src/routes/pages.router.js')
 const auth = require('./src/routes/auth.router.js')
 const admin = require('./src/routes/admin.router.js')
+const teste = require('./src/routes/teste.router.js')
 app.use('/', pages)
 app.use('/auth', auth)
 app.use('/admin', admin)
+app.use('/teste', teste)
 
 app.listen(PORT, ()=>{
     console.log('Servidor aberto na porta: ' + PORT)
