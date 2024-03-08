@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "buildCss": "npx tailwindcss -i ./src/input.css -o ./public/css/output.css --watch"
+    "css": "npx tailwindcss -i ./src/input.css -o ./public/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,8 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.4.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "mongoose": "^8.2.1",

@@ -8,7 +8,6 @@ module.exports = {
             branco: "#FFFFFF",
             preto: "#000000",
             cinza: "#212121"
-
           },
       },
     },
