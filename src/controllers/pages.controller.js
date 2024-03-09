@@ -10,6 +10,10 @@ exports.register = (req, res) => {
     res.render('register')
 }
 
-exports.newBingo = (req, res) => {
-    res.render('newBingo')
+exports.newCard = (req, res) => {
+    res.render('newCard')
+}
+
+exports.cardsList = (req, res) => {
+    res.render('cardsList')
 }

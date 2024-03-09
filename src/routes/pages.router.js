@@ -7,6 +7,7 @@ const pages = require('../controllers/pages.controller')
 router.get('/', pages.home)
 router.get('/login', pages.login)
 router.get('/register', pages.register)
-router.get('/novo-bingo', pages.newBingo)
+router.get('/nova-cartela', pages.newCard)
+router.get('/cartelas', pages.cardsList)
 
 module.exports = router

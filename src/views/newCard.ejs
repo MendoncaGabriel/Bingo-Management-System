@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Bingo</title>
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-gray-100">
+
+
+
+
+    <section class="border border-red-500 grid grid-cols-6 ">
+        <!-- navbar -->
+        <div class="col-span-6">
+            <%- include('./components/navbar.ejs') %> 
+        </div>
+
+        <!-- assidebar -->
+        <div class="border border-blue-600 col-span-1 h-screen bg-gray-50">
+            <%- include('./components/sidebar.ejs') %> 
+        </div>
+
+        <!-- screen -->
+        <div class="border border-blue-600 col-span-5 h-screen relative">
+            <section class="bg-white shadow-md p-10 m-auto max-w-screen-lg rounded-md">
+
+                <h1 class="text-center text-2xl text-gray-600 font-semibold mb-7">Cadastrar Nova Cartela</h1>
+    
+                <form class="max-w-md mx-auto">
+                    <!-- Titulo -->
+                    <div class="relative z-0 w-full mb-7 group">
+                        <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_email" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Titulo</label>
+                    </div>
+    
+                    <!-- Categoria -->
+                    <div class="relative z-0 w-full mb-7 group">
+                        <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_email" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Catégoria</label>
+                    </div>
+    
+                    <!-- Bingos por cartela -->
+                    <div class="relative z-0 w-full mb-7 group">
+                        <input type="number" min="1" max="5"  name="repeat_password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Bingos por cartela</label>
+                    </div>
+    
+                    <!-- Quantidade de cartelas -->
+                    <div class="relative z-0 w-full mb-7 group">
+                        <input type="number" min="1" max="5"  name="repeat_password" id="floating_repeat_password" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quantidade de Cartelas</label>
+                    </div>
+    
+                    <!-- Tipo de bingo -->
+                    <div class="relative z-0 w-full mb-7 group">
+                        <label
+                            for="formFile"
+                            class="mb-2 inline-block text-neutral-500  text-md"
+                            >Padrão de Bingo</label
+                        >
+                        <div class="grid grid-cols-2 gap-2  items-center justify-center">
+    
+                            <div class="flex items-center ps-4 border border-gray-200 hover:bg-green-50 rounded " title="Nesse padrão, 25 números aleatórios entre 1 e 75 são marcados no cartão de bingo.">
+                                <input  checked id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-full h-4 text-blue-600 bg-gray-100 border-gray-300  ">
+                                <label for="bordered-radio-1" class="w-full py-4 ms-2 text-md font-medium text-gray-900 ">25/75</label>
+                            </div>
+                            <div class="flex items-center ps-4 border border-gray-200 hover:bg-green-50 rounded " title="Nesse padrão, 25 números aleatórios entre 1 e 100 são marcados no cartão de bingo.">
+                                <input  id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-full h-4 text-blue-600 bg-gray-100 border-gray-300  ">
+                                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-md font-medium text-gray-900 ">25/100</label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Imagem de fundo -->
+                    <div class="relative z-0 w-full mb-7 group">
+                        <div class="mb-3">
+                            <label
+                                for="formFile"
+                                class="mb-2 inline-block text-neutral-500  text-md"
+                                >Imagem de fundo</label
+                            >
+                            <input
+                                class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none "
+                                type="file"
+                                id="formFile" />
+                            </div>
+                    </div>
+    
+                    <button 
+                        type="button" 
+                        class="w-full bg-verde hover:brightness-105 hover:shadow-md duration-100 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center  bg-green-custom" 
+                    >Salvar</button>
+                </form>
+    
+            </section>
+        </div>
+    </section>
+
+
+
+
+</body>
+</html>

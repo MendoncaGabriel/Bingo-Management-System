@@ -29,7 +29,11 @@ exports.register = async (req, res) => {
                 res.status(200).json({msg: 'Usuário criado com sucesso:', newUser, token})
             })
             .catch((error)=>{
-                res.status(400).json({msg: 'Erro ao criar usuário:', error})
+				if(error.keyPattern.name == 1){
+					res.status(400).json({msg: 'Erro ao criar usuário, nome ja foi registrado!', error})
+				}else{
+					res.status(400).json({msg: 'Erro ao criar usuário:', error})
+				}
             })
     } catch(error){
         res.status(500).json({msg: 'Erro interno no sservidor', error})

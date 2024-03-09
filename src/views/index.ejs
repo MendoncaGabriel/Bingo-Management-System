@@ -8,8 +8,24 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    
+    <section class="border border-red-500 grid grid-cols-6 ">
+        <!-- navbar -->
+        <div class="col-span-6">
+            <%- include('./components/navbar.ejs') %> 
+        </div>
 
-   <%- include('./components/navbar.ejs') %>
+        <!-- assidebar -->
+        <div class="border border-blue-600 col-span-1 h-screen bg-gray-50">
+            <%- include('./components/sidebar.ejs') %> 
+        </div>
+
+        <!-- screen -->
+        <div class="border border-blue-600 col-span-5 h-screen relative">
+            <h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-gray-300">BEM VINDO</h1>
+        </div>
+    </section>
+
     
 </body>
 </html>
