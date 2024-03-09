@@ -7,25 +7,20 @@
     <link rel="stylesheet" href="/css/output.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
 
 
 
 
-    <section class="border border-red-500 grid grid-cols-6 ">
-        <!-- navbar -->
-        <div class="col-span-6">
-            <%- include('./components/navbar.ejs') %> 
-        </div>
+    <section class="border border-red-500 h-screen  ">
 
-        <!-- assidebar -->
-        <div class="border border-blue-600 col-span-1 h-screen bg-gray-50">
-            <%- include('./components/sidebar.ejs') %> 
-        </div>
-
+        <%- include('./components/navbar.ejs') %> 
+   
         <!-- screen -->
-        <div class="border border-blue-600 col-span-5 h-screen relative">
-            <section class="bg-white shadow-md p-10 m-auto max-w-screen-lg rounded-md">
+        <div class="border border-blue-600 flex    bg-gray-50" style=" height: calc(100vh - 90px);">
+            <%- include('./components/sidebar.ejs') %> 
+
+            <section class="bg-white shadow-md p-10 m-auto max-w-screen-lg w-full rounded-md  border border-green-400">
 
                 <h1 class="text-center text-2xl text-gray-600 font-semibold mb-7">Cadastrar Nova Cartela</h1>
     

@@ -9,20 +9,18 @@
 </head>
 <body>
     
-    <section class="border border-red-500 grid grid-cols-6 ">
-        <!-- navbar -->
-        <div class="col-span-6">
-            <%- include('./components/navbar.ejs') %> 
-        </div>
 
-        <!-- assidebar -->
-        <div class="border border-blue-600 col-span-1 h-screen bg-gray-50">
-            <%- include('./components/sidebar.ejs') %> 
-        </div>
 
+
+    <section class="border border-red-500 h-screen  ">
+
+        <%- include('./components/navbar.ejs') %> 
+   
         <!-- screen -->
-        <div class="border border-blue-600 col-span-5 h-screen relative">
-            <h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-gray-300">BEM VINDO</h1>
+        <div class="border border-blue-600 flex    bg-gray-50" style=" height: calc(100vh - 90px);">
+            <%- include('./components/sidebar.ejs') %> 
+
+            <h1 class="p-10 text-7xl pb-10 text-gray-200">BEM VINDO</h1>
         </div>
     </section>
 
