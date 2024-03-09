@@ -9,3 +9,7 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
     res.render('register')
 }
+
+exports.newBingo = (req, res) => {
+    res.render('newBingo')
+}

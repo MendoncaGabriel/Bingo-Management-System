@@ -1,7 +1,7 @@
 const validator = require('validator');
 const User = require('../../database/models/userModel')
 
-module.exports = async function userValidationForRegistration(req, res, next){
+exports.Registration = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   // Validação de dados
@@ -43,6 +43,44 @@ module.exports = async function userValidationForRegistration(req, res, next){
 
         // Se tudo estiver correto, chame next()
         next();
+    } catch (error) {
+        // Tratar erros de findOne, se necessário
+        console.error('Erro ao verificar usuário existente:', error);
+        return res.status(500).json({ msg: 'Erro interno do servidor.' });
+    }
+};
+
+exports.Login = async (req, res, next) => {
+  const {email, password } = req.body;
+
+  // Validação de dados
+    if (!email || !password) {
+        return res.status(400).json({ msg: 'Por favor, forneça e-mail e senha.' });
+    }
+
+
+  // Validação de e-mail
+    if (!validator.isEmail(email)) {
+        return res.status(400).json({ msg: 'E-mail inválido.' });
+    }
+
+
+  //validar senha
+    if (password.length < 3 || password.length > 20) {
+      return res.status(400).json({ msg: 'Senha incorreta!' });
+    }
+
+
+    try {
+      // Verificar se o usuário já existe
+      const userExists = await User.findOne({ email: email });
+
+      if (!userExists) {
+        return res.status(422).json({ msg: 'Usuário não encontrado. Por favor, verifique suas credendiais!' });
+      }
+
+      // Se tudo estiver correto, chame next()
+      next();
     } catch (error) {
         // Tratar erros de findOne, se necessário
         console.error('Erro ao verificar usuário existente:', error);

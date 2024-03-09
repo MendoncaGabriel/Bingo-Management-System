@@ -29,8 +29,12 @@ function register(){
         return res.json();
     })
     .then(res =>{
-        console.log(res)
-        setCookie('token', res.token, 30);
+        const rememberCheckBox = document.querySelector('input#remember')
+        if (rememberCheckBox.checked) {
+            setCookie('token', res.token, 30);
+        } else {
+            setCookie('token', res.token, 1);
+        }
         window.location.href = '/';
     })
     .catch(err => {

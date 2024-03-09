@@ -36,3 +36,48 @@ exports.register = async (req, res) => {
     }
     
 }
+
+
+exports.logIn = async (req, res) => {
+	const {email, password} = req.body
+    console.log(email, password)
+
+	//validações
+	if(!email){
+		return res.status(422).json({msg: 'O email obrigatorio!'})
+	}	
+	if(!password){
+		return res.status(422).json({msg: 'A senha obrigatorio!'})
+	}	
+
+	//checar se usuario existe
+	const user = await User.findOne({email: email})
+
+	if(!user){
+		return res.status(404).json({msg: 'usuario não encontrado!'})
+	}
+
+	//verificar senha confere com cadastro
+	const checkPassword = await bcrypt.compare(password, user.password)
+
+	if(!checkPassword ){
+		return res.status(422).json({msg: 'Senha invalida'})
+	}
+
+	try{
+		const secret = process.env.SECRET
+		const token = jwt.sign(
+			{
+				id: user._id
+			}, secret
+		)
+
+        res.status(200).json({msg: 'Autenticação realizada com sucesso!', token})
+
+		
+	}catch(erro){
+		console.log(erro)
+		res.status(500).json({msg: 'Aconteceu um erro no servidor, tente novamente mais tarde!'})
+	}
+
+}
