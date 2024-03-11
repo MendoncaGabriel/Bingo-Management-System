@@ -9,14 +9,15 @@ exports.create = async (req, res) => {
     try {
         const id = req.params.id;
         const data = await cardSchema.findById(id);
-        console.log(data.background)
 
         const metadata = {
-            text: 'Gabriel',
+            bingos: data.bingoCards,
             bingoQuantity: data.bingosForCards,
             background: `${process.env.DOMINIO}/images/${data.background}`,
             pages: data.NumberOfCards,
         };
+
+        console.log(data.bingoCards)
 
         ejs.renderFile('src/views/templates/cartela.ejs', metadata, (err, html) => {
             if (err) {
