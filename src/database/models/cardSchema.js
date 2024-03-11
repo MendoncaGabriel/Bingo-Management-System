@@ -19,7 +19,7 @@ const cardSchema = new mongoose.Schema({
         required: true
     },
     bingoPattern: {  // Padrão de bingo 25/75 ou 22/100
-        type: String, 
+        type: Number, 
         required: true
     },
     background: {  // Caminho para imagem de fundo
@@ -29,7 +29,7 @@ const cardSchema = new mongoose.Schema({
     bingoCards: [{
     
         number: {
-            type: String,
+            type: Number,
             required: true
         },
         bingo: {
@@ -37,7 +37,7 @@ const cardSchema = new mongoose.Schema({
             required: true
         },
         status: {
-            type: String,
+            type: Boolean,
             default: false
         },
         buyersName: {
@@ -51,7 +51,7 @@ const cardSchema = new mongoose.Schema({
         },
         date: {
             type: String,
-            required: false
+            default: Date.now()
         }
     }]
  
