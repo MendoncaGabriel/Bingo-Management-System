@@ -9,12 +9,12 @@
 </head>
 <body class="bg-gray-100">
 
-    <section class="border border-red-500 h-screen  ">
+    <section class=" h-screen  ">
             
         <%- include('./components/navbar.ejs') %> 
             
         <!-- screen -->
-        <div class="border border-blue-600 flex    bg-gray-50" style=" height: calc(100vh - 90px);">
+        <div class=" border-blue-600 flex    bg-gray-50" style=" height: calc(100vh - 90px);">
             <%- include('./components/sidebar.ejs') %> 
             
             
@@ -32,79 +32,78 @@
                 </div>
                 
                 <!-- Tabela de bingos -->
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[550px] overflow-auto border border-red-500">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-52 py-3 text-left">
-                                    Titulo
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Categoria
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Bingos qtd.
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Cartela qtd.
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Padrão
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Editar
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Baixar
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Deletar
-                                </th>
-                            </tr>
-                        </thead>
-
-                       
-                            <table class="min-w-full divide-y divide-gray-200">
-                              <tbody class="border border-red-600 ">
-                                <% for (let i = 0; i < 30; i++) { %>
-                                  <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
-                                        ARRAIÁ DA PARÓQUIA SANTA TEREZINHA
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-[550px] overflow-auto border ">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Titulo
                                     </th>
-                                    <td class="px-6 py-4">
-                                        Igreja
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        4
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        5000
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        25/75
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline ">
-                                            <img src="/icons/icons8-editar-100.png" class="w-6 " alt="">
-                                        </a>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline ">
-                                            <img src="/icons/icons8-pdf-100.png" class="w-6 " alt="">
-                                        </a>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline ">
-                                            <img src="/icons/icons8-remover-100.png" class="w-6 " alt="">
-                                        </a>
-                                    </td>
-                                  </tr>
-                                <% } %>
-                              </tbody>
-                            </table>
-                         
-                          
-                    </table>
+                                    <th scope="col" class="px-6 py-3">
+                                        Categoria
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Bingos qtd.
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Cartela qtd.
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Padrão
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Editar
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Baixar
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Deletar
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="border border-red-600">
+                    
+                                <% cards.map(element => { %>
+                                    <tr class="odd:bg-white   even:bg-gray-50  border-b hover:bg-green-100">
+                                        <td title="<%= element.title %>" class="px-6 text-left py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white  border border-gray-200 overflow-hidden ">
+                                            <%= element.title %>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-left">
+                                            <%= element.category %>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-center">
+                                            <%= element.bingosForCards %>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-center">
+                                            <%= element.NumberOfCards %>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-center">
+                                            <%= element.bingoPattern %>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden">
+                                            <a href="/editar-cartela?id=<%= element._id %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-auto block">
+                                                <img src="/icons/icons8-editar-100.png" class="w-6" alt="">
+                                            </a>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
+                                            <button onclick="downloadPdf('<%= element._id %>')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-auto block">
+                                                <img src="/icons/icons8-pdf-100.png" class="w-6" alt="">
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
+                                            <button onclick="deleteCard('<%= element._id %>')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-auto block">
+                                                <img src="/icons/icons8-remover-100.png" class="w-6" alt="">
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                    
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
     
     
@@ -116,3 +115,6 @@
     
 </body>
 </html>
+
+
+<script src="/js/page/card.js"></script>

@@ -1,15 +1,29 @@
 const ejs = require('ejs');
 const pdf = require('html-pdf');
+const cardSchema = require('../database/models/cardSchema')
+const path = require('path');
+require('dotenv').config()
 
-exports.create = (req, res) => {
-    try{
-        const { bingoQuantity,  background, pages } = req.body
 
-        ejs.renderFile('src/views/templates/cartela.ejs', {text: 'Gabriel', bingoQuantity, background, pages}, (err, html) => {
+exports.create = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await cardSchema.findById(id);
+        console.log(data.background)
+
+        const metadata = {
+            text: 'Gabriel',
+            bingoQuantity: data.bingosForCards,
+            background: `${process.env.DOMINIO}/images/${data.background}`,
+            pages: data.NumberOfCards,
+        };
+
+        ejs.renderFile('src/views/templates/cartela.ejs', metadata, (err, html) => {
             if (err) {
                 console.log('ERRO!', err);
+                res.status(500).json({ msg: 'Erro ao renderizar o template EJS.' });
             } else {
-                const opcoesPdf = {
+                const optionsPdf = {
                     format: 'A4',
                     orientation: 'portrait',
                     border: {
@@ -19,30 +33,20 @@ exports.create = (req, res) => {
                         left: '0px',
                     },
                 };
-                pdf.create(html, opcoesPdf).toFile('./meupdf.pdf', (err, res) => {
+                pdf.create(html, optionsPdf).toFile('./public/pdf/meupdf.pdf', (err, result) => {
                     if (err) {
                         console.log('Um erro aconteceu', err);
-                       
+                        res.status(500).json({ msg: 'Erro ao gerar o arquivo PDF.' });
                     } else {
-                        console.log(res);
-                       
+                        console.log(result);
+                        // Envie o arquivo PDF como resposta ao cliente
+                        res.sendFile(path.resolve(__dirname, '../../public/pdf/meupdf.pdf'));
                     }
                 });
             }
         });
-
-        res.status(200).json({msg: "pdf exportado com sucesso!"})
-    }catch(err){
-        res.status(400).json({msg: "Erro ao criar exportar pdf"})
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ msg: 'Erro ao criar exportar PDF.' });
     }
 };
-
-
-exports.render = (req, res) => {
-    res.render('../views/templates/cartela.ejs', {
-        pages: 1,
-        bingoQuantity: 2,
-        background: 'https://png.pngtree.com/png-clipart/20210627/original/pngtree-simple-color-bingo-night-party-poster-png-image_6461161.jpg'
-    })
-    
-}
