@@ -3,7 +3,7 @@ const pdf = require('html-pdf');
 
 exports.create = (req, res) => {
     try{
-        const { text, bingoQuantity,  background, pages } = req.body
+        const { bingoQuantity,  background, pages } = req.body
 
         ejs.renderFile('src/views/templates/cartela.ejs', {text: 'Gabriel', bingoQuantity, background, pages}, (err, html) => {
             if (err) {
