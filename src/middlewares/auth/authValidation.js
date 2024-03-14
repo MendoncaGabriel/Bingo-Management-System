@@ -1,5 +1,5 @@
 const validator = require('validator');
-const User = require('../../database/models/userModel')
+const User = require('../../database/models/userSchemas.js')
 
 exports.Registration = async (req, res, next) => {
   const { name, email, password } = req.body;

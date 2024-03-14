@@ -1,4 +1,4 @@
-const User = require('../database/models/userModel.js')
+const User = require('../database/models/userSchemas.js')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config()

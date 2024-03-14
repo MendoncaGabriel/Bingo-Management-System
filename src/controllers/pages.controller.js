@@ -1,11 +1,12 @@
+const cardSchema = require('../database/models/cardSchema')
+
+
 exports.home = (req, res) =>{
     res.render('index')
 }
-
 exports.login = (req, res) => {
     res.render('login')
 }
-
 exports.register = (req, res) => {
     res.render('register')
 }
@@ -13,7 +14,12 @@ exports.register = (req, res) => {
 exports.newCard = (req, res) => {
     res.render('newCard')
 }
-
-exports.cardsList = (req, res) => {
-    res.render('cardsList')
+exports.editcard = async (req, res) => {
+    const id = req.query.id
+    const card = await cardSchema.findById(id)
+    res.render('editCard', {card, id})
+}
+exports.cardsList = async (req, res) => {
+    const list = await cardSchema.find({}).sort({ date: 1 });
+    res.render('cardsList', {cards: list})
 }

@@ -23,11 +23,15 @@ app.set('views', __dirname + '/src/views');
 const pages = require('./src/routes/pages.router.js')
 const auth = require('./src/routes/auth.router.js')
 const admin = require('./src/routes/admin.router.js')
-const teste = require('./src/routes/teste.router.js')
+const card = require('./src/routes/card.router.js')
+const pdf = require('./src/routes/pdf.router.js')
+
 app.use('/', pages)
 app.use('/auth', auth)
 app.use('/admin', admin)
-app.use('/teste', teste)
+
+app.use('/card', card)
+app.use('/pdf', pdf)
 
 app.listen(PORT, ()=>{
     console.log('Servidor aberto na porta: ' + PORT)

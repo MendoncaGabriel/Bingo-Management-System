@@ -1,9 +1,9 @@
 module.exports = function bingoGenerator(amount, range){
     try{
-
         if(!amount) return "Passe a quantidade de bingos"
         if(!range) return "passe o modelo de bingo - 75 ou 100 ('Numero aleatorio de 1 a 75 ou 1 a 100')"
-
+        
+        let cont = 0
         const bingos = []
 
         for(let i = 0; i < amount; i++){
@@ -18,7 +18,9 @@ module.exports = function bingoGenerator(amount, range){
             }
             if(!bingos.includes(bingo)){
                 const order = bingo.sort((a, b) => a - b) 
-                bingos.push(order)
+                cont++
+                bingos.push({number: cont, bingo: order, status: false, buyersName: "", contact: "", date: Date.now()})
+
         
             }else{
                 i -= 1
