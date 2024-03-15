@@ -1,5 +1,5 @@
 const cardSchema = require('../database/models/cardSchema')
-
+require('dotenv').config()
 
 exports.home = (req, res) =>{
     res.render('index')
@@ -22,4 +22,16 @@ exports.editcard = async (req, res) => {
 exports.cardsList = async (req, res) => {
     const list = await cardSchema.find({}).sort({ date: 1 });
     res.render('cardsList', {cards: list})
+}
+exports.cardPrint = async (req, res) => {
+    const id = req.params.id
+    const data = await cardSchema.findById(id);
+
+    const metadata = {
+        background: `${process.env.DOMINIO}/images/${data.background}`,
+        data: data
+    }
+    
+    console.log(data)
+    res.render('cardPrint', metadata)
 }

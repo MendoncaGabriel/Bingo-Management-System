@@ -59,6 +59,11 @@ exports.update = async (req, res) => {
             return res.status(400).json({ msg: 'Erro: padrão de bingo não aceito (75 ou 100).' });
         }
 
+
+
+
+        
+
         // Atualizar documento no MongoDB
         const dataUpdate = {
             title,
@@ -69,7 +74,16 @@ exports.update = async (req, res) => {
         }
         req.file ? dataUpdate.background = req.file.filename : ''
 
+        //verificar se a quantidade de cartelas mudou
+        let datacard = await cardSchema.findById(id)
+        if(datacard.NumberOfCards != NumberOfCards){
+            // criar bingos
+            const bingos = await bingoGenerator(NumberOfCards, bingoPattern);
+            dataUpdate.bingoCards = bingos
+            console.log('Numero de cartelas mudou!, gerando novos Bingos & Cartelas')
+        }
 
+ 
 
         const updatedCard = await cardSchema.findByIdAndUpdate(id,dataUpdate,{ new: true });
 

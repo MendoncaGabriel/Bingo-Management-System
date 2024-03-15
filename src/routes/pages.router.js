@@ -10,5 +10,6 @@ router.get('/register', pages.register)
 router.get('/nova-cartela', pages.newCard)
 router.get('/editar-cartela', pages.editcard)
 router.get('/cartelas', pages.cardsList)
+router.get('/cartela/:id', pages.cardPrint)
 
 module.exports = router
