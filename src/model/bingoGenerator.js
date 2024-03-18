@@ -48,6 +48,7 @@ function gerarBingo100() {
 
 
 module.exports = function bingoGenerator(amount, range) {
+    
     try {
         if (!amount) return "Passe a quantidade de bingos";
         if (!range) return "passe o modelo de bingo - 75 ou 100 ('Numero aleatorio de 1 a 75 ou 1 a 100')";
