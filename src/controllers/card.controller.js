@@ -45,6 +45,12 @@ exports.create = async (req, res) => {
     }
 };
 
+exports.getCard = async (req, res) => {
+    const id = req.params.id
+    const card = await cardSchema.findById(id)
+    res.status(200).json(card)
+}
+
 exports.update = async (req, res) => {
     try {
         const id = req.params.id || '';

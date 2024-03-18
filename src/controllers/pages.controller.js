@@ -26,7 +26,7 @@ exports.cardsList = async (req, res) => {
 exports.cardPrint = async (req, res) => {
     const id = req.params.id
     const data = await cardSchema.findById(id);
-
+    
     const metadata = {
         background: `${process.env.DOMINIO}/images/${data.background}`,
         data: data
@@ -34,4 +34,9 @@ exports.cardPrint = async (req, res) => {
     
     console.log(data)
     res.render('cardPrint', metadata)
+}
+exports.registerCardsSold = async (req, res) => {
+    const cards = await cardSchema.find()
+    console.log(cards)
+    res.render('registerCardsSold', {cards})
 }

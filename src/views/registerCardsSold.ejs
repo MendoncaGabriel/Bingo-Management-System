@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Cartelas Vendidas</title>
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body >
+
+    <section class=" h-screen  ">
+            
+        <%- include('./components/navbar.ejs') %> 
+            
+        <!-- screen -->
+        <div class=" border-blue-600 flex    bg-gray-200" style=" height: calc(100vh - 90px);">
+            <%- include('./components/sidebar.ejs') %> 
+            
+            
+            <section class="bg-white shadow-md p-10 m-auto max-w-screen-xl  w-full rounded-md flex-none border border-red-500 h-full ">
+                <section class="space-x-2 mb-5">
+
+                    <div class="inline-block">
+                        <label for="cardsSelect" class="text-gray-600">Selecionar Cartela:</label> <br>
+                        <select name="" id="cardsSelect" class="border px-8 py-2 mb-2">
+                            <option value="" disabled selected>Cartelas</option>
+                            <% cards.map(e => { %>
+                                <option value="<%= e._id %>"><%= e.title  %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                
+                    <div class="inline-block">
+                        <label for="filterNumerBingo" class="text-gray-600">Filtrar por numero:</label> <br>
+                        <input id="filterNumerBingo" type="number" class="px-8 py-2 border" placeholder="Numero do Bingo">
+                    </div>
+                </section>
+
+                
+
+                <table class="min-w-full border ">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Numero</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Nome Comprador</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Contato</th>
+
+                            <!-- ADICIONAR EM POPUP EM ADD MAIS INFORMAÇÕES -->
+                            <!-- <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">CPF</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">ENDEREÇO</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">VENDEDOR</th> -->
+                            
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Status</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Salvar Alterações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listBingo" class="border-blue-700"></tbody>
+                </table>
+                
+
+               
+    
+            </section>
+        </div>
+    </section>
+    
+</body>
+</html>
+<!-- Filtro numero bingo -->
+<script>
+    const filterNumerBingo = document.getElementById('filterNumerBingo')
+    
+    filterNumerBingo.addEventListener('keyup', (e)=>{
+        if(e.keyCode == 13){
+            const filterNumber = document.querySelectorAll('.filterNumber')
+   
+            // Limpar
+            filterNumber.forEach((e)=>{
+                e.classList.remove('hidden')
+            })
+
+
+
+            
+
+            //Filtar
+            filterNumber.forEach((e)=>{
+                let number = e.getAttribute('name')
+                if(number !== filterNumerBingo.value){
+                    e.classList.add('hidden')
+                }
+            })
+            
+            //Mostrar Todos
+            if(filterNumerBingo.value == ''){
+                filterNumber.forEach((e)=>{
+                    e.classList.remove('hidden')
+                })
+            }
+ 
+        }
+    })
+</script>
+
+<!-- Buscar por cartela -->
+<script>
+    const cardsSelect = document.getElementById('cardsSelect')
+    cardsSelect.addEventListener('change', (e)=>{
+        getListCardBingo(e.target.value)
+    })
+
+    function getListCardBingo(id){
+        fetch(`card/getCard/${id}`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(res => {
+            renderList(res)
+        })
+    }
+    function formatarData(timestamp) {
+    if (!timestamp) {
+        return "Timestamp não definido";
+    }
+
+    const date = new Date(timestamp);
+
+    const dia = String(date.getDate()).padStart(2, '0');
+    const mes = String(date.getMonth() + 1).padStart(2, '0');
+    const ano = date.getFullYear();
+
+    const hora = String(date.getHours()).padStart(2, '0');
+    const minuto = String(date.getMinutes()).padStart(2, '0');
+
+    return `${dia}/${mes}/${ano} - ${hora}:${minuto}`;
+}
+
+    function renderList(res){
+        const listBingo = document.querySelector('tbody#listBingo')
+        
+        listBingo.innerHTML = ''
+
+        res.bingoCards.forEach(e => {
+            listBingo.innerHTML += `
+                <tr class="bg-white filterNumber" name="${e.number}">
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">${e.number}</td>
+
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <input type="text" name="" id="" value="${e.buyersName.length > 0 ? e.buyersName : ''}" class="px-4 py-1 border border-gray-300" placeholder="Nome do comprador">
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <input type="text" name="" id="" value="${e.contact.length > 0 ? e.contact : ''}" class="px-4 py-1 border border-gray-300" placeholder="Numero para contato">
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="Numero para contato">
+                    </td>
+                    
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="000.000.000-00">
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="rua: N99 - Bairro ">
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="Nome do vendedor">
+                    </td>
+                    
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <select name="" id="" class="border border-gray-300 px-4 py-2 mb-1">
+                            <option value="true" ${e.status == true ? 'selected' : ''} class="text-gray-300">VENDIDO</option>
+                            <option value="false" ${e.status == false ? 'selected' : ''} class="text-gray-300">NÃO VENDIDO</option>
+                        </select>
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
+                        <button class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded-md hover:shadow text-white">SALVAR</button>
+                    </td>
+   
+                </tr>
+            `
+        });
+
+        
+    }
+
+</script>
