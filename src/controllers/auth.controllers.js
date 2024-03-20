@@ -44,7 +44,7 @@ exports.register = async (req, res) => {
 
 exports.logIn = async (req, res) => {
 	const {email, password} = req.body
-    console.log(email, password)
+
 
 	//validações
 	if(!email){
@@ -80,7 +80,7 @@ exports.logIn = async (req, res) => {
 
 		
 	}catch(erro){
-		console.log(erro)
+
 		res.status(500).json({msg: 'Aconteceu um erro no servidor, tente novamente mais tarde!'})
 	}
 

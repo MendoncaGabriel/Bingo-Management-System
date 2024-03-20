@@ -17,11 +17,11 @@ exports.create = async (req, res) => {
             pages: data.NumberOfCards,
         };
 
-        console.log(data.bingoCards)
+
 
         ejs.renderFile('src/views/templates/cartela.ejs', metadata, (err, html) => {
             if (err) {
-                console.log('ERRO!', err);
+
                 res.status(500).json({ msg: 'Erro ao renderizar o template EJS.' });
             } else {
                 const optionsPdf = {
@@ -36,10 +36,10 @@ exports.create = async (req, res) => {
                 };
                 pdf.create(html, optionsPdf).toFile('./public/pdf/meupdf.pdf', (err, result) => {
                     if (err) {
-                        console.log('Um erro aconteceu', err);
+              
                         res.status(500).json({ msg: 'Erro ao gerar o arquivo PDF.' });
                     } else {
-                        console.log(result);
+               
                         // Envie o arquivo PDF como resposta ao cliente
                         res.sendFile(path.resolve(__dirname, '../../public/pdf/meupdf.pdf'));
                     }
@@ -47,7 +47,7 @@ exports.create = async (req, res) => {
             }
         });
     } catch (err) {
-        console.log(err);
+ 
         res.status(400).json({ msg: 'Erro ao criar exportar PDF.' });
     }
 };

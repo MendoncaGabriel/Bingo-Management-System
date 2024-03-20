@@ -47,12 +47,9 @@ function gerarBingo100() {
 }
 
 
-module.exports = function bingoGenerator(amount, range) {
+module.exports = async function bingoGenerator(amount, range) {
     
     try {
-        if (!amount) return "Passe a quantidade de bingos";
-        if (!range) return "passe o modelo de bingo - 75 ou 100 ('Numero aleatorio de 1 a 75 ou 1 a 100')";
-
         let cont = 0;
         const bingos = [];
 
@@ -60,9 +57,9 @@ module.exports = function bingoGenerator(amount, range) {
             let bingo = [];
 
             if (range == 75) {
-                bingo = gerarBingo75();
+                bingo = await gerarBingo75();
             } else if (range == 100) {
-                bingo = gerarBingo100();
+                bingo = await gerarBingo100();
             }
 
             // Converter o array bingo em uma string para verificação de inclusão

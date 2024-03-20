@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartela</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+    <body class="bg-gray-400">
+        <button onclick="imprimir()" class="bg-blue-600 text-white">IMPRIMIR</button>
+        <section id="paginas">
+            <style>.t{width: 1cm; height: 1cm; background-color: white; text-align: center; line-height: 1cm; display: inline-block;}</style>
+            <style>.p{width: 1cm; height: 1cm; background-color: white; text-align: center; line-height: 1cm; display: inline-block; margin-top: 1.4mm;}</style>
+
+            <% data.bingoCards.map(e => { %>
+                <div style="width: 210mm; height: 297mm;  margin: auto; background-color: #fff; position: relative;">
+                    <img src="<%= background %>"  alt="Imagem de Fundo" style="width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                    <p style="position: absolute; top: 1cm; right: 1.4cm; color: white; font-size: 5mm;"><%= e.number  %></p>
+
+                    <!-- 1 BINGO  -->
+                        <div style="display: <%= data.bingosForCards == 1 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 50%; transform: translate(-50%);">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+
+                    <!-- 2 BINGO -->
+                        <div style="display: <%= data.bingosForCards == 2 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 2cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 2 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; right: 2cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+
+                    <!-- 3 BINGO -->
+                        <div style="display: <%= data.bingosForCards == 3 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 3 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 50%; transform: translate(-50%); ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 3 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+
+                    <!-- 4 BINGO -->
+                        <div style="display: <%= data.bingosForCards == 4 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 4 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 4 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 4 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+
+                    <!-- 5 BINGO -->
+                        <div style="display: <%= data.bingosForCards == 5 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 5 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 5 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 50%; transform: translate(-50%); ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 5 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards ==5 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+
+                    <!-- 6 BINGO -->
+                        <div style="display: <%= data.bingosForCards == 6 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 6 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; left: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 6 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; left: 50%; transform: translate(-50%); ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 6 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; left: 50%; transform: translate(-50%); ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 6 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 1cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                        <div style="display: <%= data.bingosForCards == 6 ? '' : 'none'  %>; background-color: rgb(161, 161, 161); padding: 0.20cm; border-radius: 0.25cm; position: absolute; bottom: 9cm ; right: 0.5cm; ">
+                            <p class="t"><b>B</b></p>
+                            <p class="t"><b>I</b></p>
+                            <p class="t"><b>N</b></p>
+                            <p class="t"><b>G</b></p>
+                            <p class="t"><b>O</b></p> <br>
+                            <p class="p"><%= e.bingo[0] %></p>
+                            <p class="p"><%= e.bingo[5] %></p>
+                            <p class="p"><%= e.bingo[10] %></p>
+                            <p class="p"><%= e.bingo[15] %></p>
+                            <p class="p"><%= e.bingo[20] %></p> <br>
+                            <p class="p"><%= e.bingo[1] %></p>
+                            <p class="p"><%= e.bingo[6] %></p>
+                            <p class="p"><%= e.bingo[11] %></p>
+                            <p class="p"><%= e.bingo[16] %></p>
+                            <p class="p"><%= e.bingo[21] %></p> <br>
+                            <p class="p"><%= e.bingo[2] %></p>
+                            <p class="p"><%= e.bingo[7] %></p>
+                            <p class="p"><%= e.bingo[12] %></p>
+                            <p class="p"><%= e.bingo[17] %></p>
+                            <p class="p"><%= e.bingo[22] %></p> <br>
+                            <p class="p"><%= e.bingo[3] %></p>
+                            <p class="p"><%= e.bingo[8] %></p>
+                            <p class="p"><%= e.bingo[13] %></p>
+                            <p class="p"><%= e.bingo[18] %></p>
+                            <p class="p"><%= e.bingo[23] %></p> <br>
+                            <p class="p"><%= e.bingo[4] %></p>
+                            <p class="p"><%= e.bingo[9] %></p>
+                            <p class="p"><%= e.bingo[14] %></p>
+                            <p class="p"><%= e.bingo[19] %></p>
+                            <p class="p"><%= e.bingo[24] %></p> <br>
+                        </div>
+                </div>
+
+            <% }) %>
+        </section>
+    </body>
+</html>
+<script>
+    function imprimir() {
+        const conteudo = document.querySelector('section#paginas').innerHTML;
+        const win = window.open('', '', 'height=720,width=1280');
+
+        win.document.write('<html>');
+        win.document.write('<head>');
+        win.document.write('<title>PDF</title>');
+
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write('<div class="bingo-container">');
+        win.document.write(conteudo);
+        win.document.write('</div>');
+        win.document.write('</body>');
+        win.document.write('</html>');
+
+        win.print();
+    }
+</script>

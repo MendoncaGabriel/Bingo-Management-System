@@ -55,8 +55,16 @@ function updateCard(cardId) {
             console.error('Error during fetch:', err);
         });
 }
-
+function loadCreate(){
+    document.querySelector('#btnSpanCreate').classList.add('hidden')
+    document.querySelector('#loadSpin').classList.remove('hidden')
+}
+function stopLoadCreate(){
+    document.querySelector('#btnSpanCreate').classList.remove('hidden')
+    document.querySelector('#loadSpin').classList.add('hidden')
+}
 function createNewCard() {
+    loadCreate()
     // Obtenha a referência para o input de arquivo de imagem
     var imageInput = document.querySelector('#background');
     var imageData = new FormData();
@@ -68,8 +76,7 @@ function createNewCard() {
     imageData.append('title', document.querySelector('#title').value);
     imageData.append('category', document.querySelector('#category').value);
     imageData.append('bingosForCards', document.querySelector('#bingosForCards').value);
-    imageData.append('NumberOfCards', document.querySelector('#bingosForCards').value);
-    console.log(document.querySelector('input[name="bordered-radio"]:checked').value)
+    imageData.append('NumberOfCards', document.querySelector('#NumberOfCards').value);
     imageData.append('bingoPattern', document.querySelector('input[name="bordered-radio"]:checked').value);
 
 
@@ -81,13 +88,12 @@ function createNewCard() {
     .then(res => {
         if(res.status == 200){
             window.location.href = '/cartelas'
+            stopLoadCreate()
         }
-        res.json()
-    })
-    .then(res => {
-        console.log(res)
     })
     .catch((err) => {
+        stopLoadCreate()
+        alert('Erro durante a criação do bindo, Porfavor verifique o formulario!')
         console.error('Error during fetch:', err);
     });
 }

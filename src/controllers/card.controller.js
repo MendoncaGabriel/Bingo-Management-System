@@ -1,5 +1,5 @@
 const cardSchema = require('../database/models/cardSchema')
-const bingoGenerator = require('../model/bingoGenerator')
+const bingoGenerator = require('../model/bingoGeneratorMin')
 
 
 exports.create = async (req, res) => {
@@ -15,7 +15,8 @@ exports.create = async (req, res) => {
         const { title, category, bingosForCards, NumberOfCards, bingoPattern } = req.body;
 
         // validar informações do body
-        if (!title || !category || !bingosForCards || !NumberOfCards || !bingoPattern) {
+        if (!title  || !bingosForCards || !NumberOfCards || !bingoPattern) {
+            console.log('Informações faltando!')
             return res.status(400).json({ msg: 'Informações faltando!' });
         }
 

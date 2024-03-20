@@ -32,11 +32,9 @@ exports.cardPrint = async (req, res) => {
         data: data
     }
     
-    console.log(data)
-    res.render('cardPrint', metadata)
+    res.render('cardPrintMin', metadata)
 }
 exports.registerCardsSold = async (req, res) => {
     const cards = await cardSchema.find()
-    console.log(cards)
     res.render('registerCardsSold', {cards})
 }
