@@ -95,28 +95,31 @@
 <body>
     <!-- container -->
     <section class="container">
-        <% bingos.forEach(element => { %>
-        <!-- conteúdo -->
-        <div class="folha">
-            <p class="pageNumber"><%= element.number %></p>
-            <div class="conteudo">
-                <h1>Conteúdo da Página 1</h1>
-                <p>Seu conteúdo vai aqui...</p>
-                <div class="bingoContainer">
-                    <div class="bingoGrid">
-                        <p>B</p>
-                        <p>I</p>
-                        <p>N</p>
-                        <p>G</p>
-                        <p>O</p>
-                        <% for (let j = 0; j < element.bingo.length; j++) { %>
-                        <p><%= element.bingo[j] %></p>
-                        <% } %>
+        <% if (typeof bingos != 'undefined' && bingos) { %>
+            <% bingos.forEach(element => { %>
+                <!-- conteúdo -->
+                <div class="folha">
+                    <p class="pageNumber"><%= element.number %></p>
+                    <div class="conteudo">
+                        <h1>Conteúdo da Página 1</h1>
+                        <p>Seu conteúdo vai aqui...</p>
+                        <div class="bingoContainer">
+                            <div class="bingoGrid">
+                                <p>B</p>
+                                <p>I</p>
+                                <p>N</p>
+                                <p>G</p>
+                                <p>O</p>
+                                <% for (let j = 0; j < element.length; j++) { %>
+                                    <p><%= element[j] %></p>
+                                <% } %>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <% }) %>
+            <% }) %>
+        <% } %>
+        
     </section>
 </body>
 

@@ -6,6 +6,9 @@ const cardSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
+    pdf: {
+        type: String
+    },
     category: { 
         type: String, 
         required: false 
@@ -22,7 +25,7 @@ const cardSchema = new mongoose.Schema({
         type: Number, 
         required: true
     },
-    background: {  // Caminho para imagem de fundo
+    background: {  
         type: String, 
         required: true
     },
@@ -30,34 +33,7 @@ const cardSchema = new mongoose.Schema({
         type: String,
         default: Date.now()
     },
-    bingoCards: [{
-    
-        number: {
-            type: Number,
-            required: true
-        },
-        bingo: {
-            type: [Number],
-            required: true
-        },
-        status: {
-            type: Boolean,
-            default: false
-        },
-        buyersName: {
-            type: String,
-            default: "",
-            required: false
-        },
-        contact: {
-            type: String,
-            required: false
-        },
-        date: {
-            type: String,
-            default: Date.now()
-        }
-    }]
+    bingoCards: [[Number]]
  
 });
 

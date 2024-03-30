@@ -1,5 +1,7 @@
+const pdfModel = require('../model/pdfModel')
 const cardSchema = require('../database/models/cardSchema')
 require('dotenv').config()
+const path = require('path')
 
 exports.home = (req, res) =>{
     res.render('index')
@@ -23,16 +25,10 @@ exports.cardsList = async (req, res) => {
     const list = await cardSchema.find({}).sort({ date: 1 });
     res.render('cardsList', {cards: list})
 }
-exports.cardPrint = async (req, res) => {
+exports.renderPDF = async (req, res) => {
     const id = req.params.id
-    const data = await cardSchema.findById(id);
+    await pdfModel.create(id, res)
     
-    const metadata = {
-        background: `${process.env.DOMINIO}/images/${data.background}`,
-        data: data
-    }
-    
-    res.render('cardPrintMin', metadata)
 }
 exports.registerCardsSold = async (req, res) => {
     const cards = await cardSchema.find()

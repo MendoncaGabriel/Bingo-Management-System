@@ -1,115 +1,70 @@
 const cardSchema = require('../database/models/cardSchema')
-const bingoGenerator = require('../model/bingoGeneratorMin')
+const cardModel = require('../model/cardModel')
 
-
-exports.create = async (req, res) => {
-    try {
-        // Verifique se req.file é definido e tem o campo filename
-        if (!req.file || !req.file.filename) {
-            return res.status(400).json({ msg: 'Arquivo de imagem não recebido ou inválido.' });
+module.exports = {
+    create: async (req, res) => {
+        try {
+            if (!req.file || !req.file.filename) {
+                return res.status(400).json({ msg: 'Arquivo de imagem não recebido ou inválido.' });
+            }
+    
+            const data = req.body;
+    
+            if (!data.title  || !data.bingosForCards || !data.NumberOfCards || !data.bingoPattern) {
+                console.log('Informações faltando para criação de bingo - ( crad.contoller.js exports.create )')
+                return res.status(400).json({ msg: 'Informações faltando!' });
+            }
+    
+            if (data.bingoPattern != '75' && data.bingoPattern != '100') {
+                return res.status(400).json({ msg: 'Erro: padrão de bingo não aceito. (75 ou 100)' });
+            }
+            data.background = req.file.filename,
+            await cardModel.create(data)
+       
+            return res.status(200).json({ msg: 'Cartela salva com sucesso!' });
+        } catch (error) {
+            res.status(500).json({ msg: 'Erro interno no servidor', error });
         }
-
-        // Obtenha apenas o nome do arquivo (filename)
-        const imagePath = req.file.filename;
-
-        const { title, category, bingosForCards, NumberOfCards, bingoPattern } = req.body;
-
-        // validar informações do body
-        if (!title  || !bingosForCards || !NumberOfCards || !bingoPattern) {
-            console.log('Informações faltando!')
-            return res.status(400).json({ msg: 'Informações faltando!' });
+    },
+    getById: async (req, res) => {
+        const card = cardModel.getById(req.params.id)
+        res.status(200).json(card)
+    },
+    update: async (req, res) => {
+        try {
+            if (!req.params.id) {
+                return res.status(400).json({ msg: 'ID não fornecido na consulta.' });
+            }
+    
+            const data = req.body;
+            if (data.bingoPattern !== '75' && data.bingoPattern !== '100') {
+                return res.status(400).json({ msg: 'Erro: padrão de bingo não aceito (75 ou 100).' });
+            }
+            
+            if(req.file){
+                data.background = req.file.filename
+            }
+            console.log(data)
+    
+            const updatedCard = await cardModel.update(req.params.id, data)
+            if (!updatedCard) {
+                return res.status(404).json({ msg: 'Cartela não encontrada.' });
+            }
+    
+            return res.status(200).json({ msg: 'Cartela atualizada com sucesso!', updatedCard });
+        } catch (error) {
+            res.status(500).json({ msg: 'Erro interno no servidor', error });
         }
-
-        // verificar padrão
-        if (bingoPattern != '75' && bingoPattern != '100') {
-            return res.status(400).json({ msg: 'Erro: padrão de bingo não aceito (75 ou 100) ' });
+    },
+    delete: async (req, res) => {
+        try {
+            if (!req.params.id) {
+                return res.status(400).json({ msg: 'ID não fornecido na consulta.' });
+            }
+            await cardModel.delete(req.params.id)
+            res.status(200).json({ msg: 'Cartela Apagada com sucesso!',  deletecard});
+        } catch (error) {
+            res.status(500).json({ msg: 'Erro interno no servidor', error });
         }
-
-        // criar bingos
-        const bingos = await bingoGenerator(NumberOfCards, bingoPattern);
-
-        const newCard = new cardSchema({
-            title,
-            category,
-            bingosForCards,
-            NumberOfCards,
-            bingoPattern,
-            background: imagePath, // Agora é apenas o nome do arquivo
-            bingoCards: bingos,
-        });
-
-        await newCard.save();
-
-        return res.status(200).json({ msg: 'Cartela salva com sucesso!', newCard });
-    } catch (error) {
-        res.status(500).json({ msg: 'Erro interno no servidor', error });
     }
-};
-
-exports.getCard = async (req, res) => {
-    const id = req.params.id
-    const card = await cardSchema.findById(id)
-    res.status(200).json(card)
 }
-
-exports.update = async (req, res) => {
-    try {
-        const id = req.params.id || '';
-        if (!id) {
-            return res.status(400).json({ msg: 'ID não fornecido na consulta.' });
-        }
-
-        const { title, category, bingosForCards, NumberOfCards, bingoPattern } = req.body;
-
-        // Verificar padrão de bingo
-        if (bingoPattern !== '75' && bingoPattern !== '100') {
-            return res.status(400).json({ msg: 'Erro: padrão de bingo não aceito (75 ou 100).' });
-        }
-
-        // Atualizar documento no MongoDB
-        const dataUpdate = {
-            title,
-            category,
-            bingosForCards,
-            NumberOfCards,
-            bingoPattern,
-        }
-        req.file ? dataUpdate.background = req.file.filename : ''
-
-        //verificar se a quantidade de cartelas mudou
-        let datacard = await cardSchema.findById(id)
-        if(datacard.NumberOfCards != NumberOfCards){
-            dataUpdate.bingoCards = []
-            // criar bingos
-            const bingos = await bingoGenerator(NumberOfCards, bingoPattern);
-            dataUpdate.bingoCards = await  bingos
-            console.log('Numero de cartelas mudou!, gerando novos Bingos & Cartelas')
-        }
-
- 
-
-        const updatedCard = await cardSchema.findByIdAndUpdate(id,dataUpdate,{ new: true });
-
-        if (!updatedCard) {
-            return res.status(404).json({ msg: 'Cartela não encontrada.' });
-        }
-
-        return res.status(200).json({ msg: 'Cartela atualizada com sucesso!', updatedCard });
-    } catch (error) {
-        res.status(500).json({ msg: 'Erro interno no servidor', error });
-    }
-};
-
-exports.delete = async (req, res) => {
-    try {
-        const id = req.params.id || ''; // Inicializa como uma string vazia se não for fornecido
-        if (!id) {
-            return res.status(400).json({ msg: 'ID não fornecido na consulta.' });
-        }
-        
-        const deletecard = await cardSchema.findByIdAndDelete(id)
-        return res.status(200).json({ msg: 'Cartela Apagada com sucesso!',  deletecard});
-    } catch (error) {
-        res.status(500).json({ msg: 'Erro interno no servidor', error });
-    }
-};

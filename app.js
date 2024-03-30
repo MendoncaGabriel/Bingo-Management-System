@@ -10,12 +10,12 @@ const PORT = process.env.PORT
 
 const app = express()
 
+app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
-app.use(compression())
 app.use(express.json())
 app.use(cookieParser())
-app.use(morgan('dev')) //combined ou 'dev' para uma saída mais simplificada
+app.use(morgan('dev')) //'combined' ou 'dev' para uma saída mais simplificada
 app.use(express.urlencoded({ extended: true }))
 
 app.set('view engine', 'ejs');
@@ -23,15 +23,13 @@ app.set('views', __dirname + '/src/views');
 
 const pages = require('./src/routes/pages.router.js')
 const auth = require('./src/routes/auth.router.js')
-const admin = require('./src/routes/admin.router.js')
 const card = require('./src/routes/card.router.js')
-const pdf = require('./src/routes/pdf.router.js')
 
 app.use('/', pages)
 app.use('/auth', auth)
-app.use('/admin', admin)
 app.use('/card', card)
-app.use('/pdf', pdf)
+
+
 
 app.listen(PORT, ()=>{
     console.log('Servidor aberto na porta: ' + PORT)

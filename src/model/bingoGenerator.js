@@ -67,7 +67,7 @@ module.exports = async function bingoGenerator(amount, range) {
 
             if (!bingos.some(b => JSON.stringify(b.bingo) === bingoString)) {
                 cont++;
-                bingos.push({ number: cont, bingo: bingo, status: false, buyersName: "", contact: "", date: Date.now() });
+                bingos.push( bingo );
             } else {
                 i -= 1;
             }
