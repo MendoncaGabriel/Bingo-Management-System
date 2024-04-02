@@ -11,7 +11,7 @@ const PORT = process.env.PORT
 const app = express()
 
 app.use(compression())
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/src/public')));
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
@@ -28,6 +28,7 @@ const card = require('./src/routes/card.router.js')
 app.use('/', pages)
 app.use('/auth', auth)
 app.use('/card', card)
+
 
 
 

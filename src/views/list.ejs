@@ -1,0 +1,103 @@
+
+
+    <h1 class="text-center text-2xl text-cinza font-semibold mb-5 ">CARTELAS</h1>
+    <hr class="mb-10">
+
+    <!-- Filtros -->
+    <div class=" p-4 mb-5 border-b">
+        <h2 class="text-gray-600">Filtros:</h2>
+        <div class="flex space-x-2 w-full">
+            <button class="border bg-white px-4 py-2 rounded-md block hover:bg-cinza hover:text-gray-50">Data</button>
+            <button class="border bg-white px-4 py-2 rounded-md block hover:bg-cinza hover:text-gray-50">A-Z</button>
+        </div>
+    </div>
+    
+    <!-- Tabela de bingos -->
+    <div class="relative   sm:rounded-lg max-h-[550px]  border ">
+        
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="text-xs text-gray-50 uppercase bg-cinza ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Titulo
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Categoria
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Bingos qtd.
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Cartela qtd.
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Padrão
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Editar
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Buildar PDF
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Download
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Deletar
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="border border-red-600">
+    
+                <% cards.map(element => { %>
+                    <tr class="odd:bg-white   even:bg-gray-50  border-b hover:bg-green-100">
+                        <td title="<%= element.title %>" class="px-6 text-left py-4 font-medium text-gray-900 whitespace-nowrap   border border-gray-200 overflow-hidden ">
+                            <%= element.title %>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-left">
+                            <%= element.category %>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-center">
+                            <%= element.bingosForCards %>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-center">
+                            <%= element.NumberOfCards %>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden text-center">
+                            <%= element.bingoPattern %>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden">
+                            <a href="/editar-cartela?id=<%= element._id %>" class="font-medium text-blue-600  hover:underline m-auto block">
+                                <img src="/icons/icons8-editar-100.png" class="w-6" alt="">
+                            </a>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
+                            <a href="/cartela/<%= element._id %>" target="_blank"  class="font-medium text-blue-600  hover:underline m-auto block">
+                                <img src="/icons/icons8-pdf-100.png" class="w-6" alt="">
+                            </a>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
+                            <% if (typeof element.pdf != "undefined" && element.pdf) { %>                                     
+                                <a href="/pdf/<%= element.pdf  %>"  class="font-medium text-blue-600  hover:underline m-auto block">
+                                    Abrir
+                                </a>
+                            <% } %>
+                        </td>
+                        <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
+                            <button onclick="deleteCard('<%= element._id %>')" class="font-medium text-blue-600  hover:underline m-auto block">
+                                <img src="/icons/icons8-remover-100.png" class="w-6" alt="">
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+    
+            </tbody>
+        </table>
+    
+        
+    </div>
+
+
+
+<script src="/js/page/card.js"></script>
+<script src="/js/page/cardsList.js"></script>

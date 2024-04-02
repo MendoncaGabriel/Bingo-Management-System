@@ -35,7 +35,7 @@ exports.create = async (id, res) => {
                     },
                 };
                 console.log('buildando pdf...')
-                await pdf.create(html, optionsPdf).toFile(path.resolve('public', 'pdf', `${name}.pdf`), async (err, result) => {
+                await pdf.create(html, optionsPdf).toFile(path.resolve('src','public', 'pdf', `${name}.pdf`), async (err, result) => {
                     if (err) {
               
                         console.log('Erro ao gerar o arquivo PDF.', err )

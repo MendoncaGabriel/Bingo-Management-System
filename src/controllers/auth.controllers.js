@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
             newUser.save()
             .then((user)=>{
                 //assinar token-------------------------------------
-                const token = jwt.sign({ id: user._id }, SECRET);
+                const token = jwt.sign({ user }, SECRET);
                 res.status(200).json({msg: 'Usuário criado com sucesso:', newUser, token})
             })
             .catch((error)=>{
@@ -72,7 +72,7 @@ exports.logIn = async (req, res) => {
 		const secret = process.env.SECRET
 		const token = jwt.sign(
 			{
-				id: user._id
+				user
 			}, secret
 		)
 

@@ -6,7 +6,7 @@ const fs = require('fs')
 // Configuração do multer para lidar com o upload de arquivos
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadDir = 'public/images'
+        const uploadDir = 'src/public/images'
 
         // Verifique se o diretório existe
         if (!fs.existsSync(uploadDir)) {

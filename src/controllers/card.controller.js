@@ -1,4 +1,3 @@
-const cardSchema = require('../database/models/cardSchema')
 const cardModel = require('../model/cardModel')
 
 module.exports = {
@@ -44,7 +43,7 @@ module.exports = {
             if(req.file){
                 data.background = req.file.filename
             }
-            console.log(data)
+      
     
             const updatedCard = await cardModel.update(req.params.id, data)
             if (!updatedCard) {
@@ -58,11 +57,12 @@ module.exports = {
     },
     delete: async (req, res) => {
         try {
-            if (!req.params.id) {
+            const id = req.params.id
+            if (!id) {
                 return res.status(400).json({ msg: 'ID não fornecido na consulta.' });
             }
-            await cardModel.delete(req.params.id)
-            res.status(200).json({ msg: 'Cartela Apagada com sucesso!',  deletecard});
+            await cardModel.delete(id)
+            res.status(200).json({ msg: 'Cartela Apagada com sucesso!'});
         } catch (error) {
             res.status(500).json({ msg: 'Erro interno no servidor', error });
         }

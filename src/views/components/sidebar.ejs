@@ -1,41 +1,40 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<aside id="default-sidebar" class="transition-transform -translate-x-full sm:translate-x-0 bg-gray-100 border min-w-72" aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto  dark:bg-gray-800">
+<aside id="default-sidebar" class=" bg-cinza text-gray-50  h-full col-span-1  row-span-10 " >
+    
        
-        <ul class="space-y-2 font-medium">
-            <!-- Nova cartela -->
-            <li>
-                <a href="/nova-cartela" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                <span class="material-symbols-outlined text-gray-500 text-3xl">cards</span>
-                <span class="ms-3">Novo Bingo</span>
-                </a>
-            </li>
+    <ul class="space-y-2 font-medium p-5">
+        <!-- Nova cartela -->
+        <li>
+            <a href="/nova-cartela" title="Cadastrar Novo Bingo" class="flex items-center p-2  rounded-lg  hover:bg-gray-800  group">
+                <img src="/icons/icons8-bingo-100.png" class="w-8" alt="">
+                <span class="ms-3">NOVO</span>
+            </a>
+        </li>
+    
+        <!-- Cartelas Cadastradas -->
+        <li>
+            <a href="/cartelas" title="Listar Bisgos Cadastrados"  class="flex items-center p-2  rounded-lg  hover:bg-gray-800  group">
+                <img src="/icons/icons8-lista-100.png" class="w-8" alt="">
+                <span class="ms-3">LISTA</span>
+            </a>
+        </li>
 
-            <!-- Cartelas Cadastradas -->
-            <li>
-                <a href="/cartelas" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                <span class="material-symbols-outlined text-gray-500 text-3xl">list</span>
-                <span class="ms-3">Bingos</span>
-                </a>
-            </li>
-
-                
-            <!-- Registrar cartelas vendidas -->
-            <li>
-                <a href="/registrar-cartelas-vendidas" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                    <img src="/icons/icons8-moedas-100.png" class="w-6" alt="">
-                    <span class="ms-3">Registrar Cartelas Vendidas</span>
-                </a>
-            </li>
             
-            <!-- Conferir bingo -->
-            <li>
-                <a href="/cartelas" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group">
-                    <img src="/icons/icons8-lottery-100.png" class="w-6" alt="">
-                    <span class="ms-3">Conferir</span>
-                </a>
-            </li>
-       </ul>
+        <!-- Registrar cartelas vendidas -->
+        <li>
+            <a href="/registrar-cartelas-vendidas" title="Registrar Cartelas Vendidas" class="flex items-center p-2  rounded-lg  hover:bg-gray-800  group">
+                <img src="/icons/icons8-moedas-100.png" class="w-8" alt="">
+                <span class="ms-3">REGISTRO</span>
+            </a>
+        </li>
+        
+        <!-- Conferir bingo -->
+        <li>
+            <a href="/cartelas" title="Conferir Bingo" class="flex items-center p-2  rounded-lg  hover:bg-gray-800  group">
+                <img src="/icons/icons8-lottery-100.png" class="w-8" alt="">
+                <span class="ms-3">CONFERÊNCIA</span>
+            </a>
+        </li>
+    </ul>
 
-    </div>
- </aside>
+    
+</aside>

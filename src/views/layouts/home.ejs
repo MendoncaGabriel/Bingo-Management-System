@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <main class="h-screen grid grid-cols-6 grid-rows-10 bg-gray-200 ">
+
+        <%- include('../components/navbar.ejs') %> 
+        <%- include('../components/sidebar.ejs') %> 
+        
+        <div class="bg-white shadow-lg rounded-sm m-auto col-span-5 row-span-10 h-full w-full max-w-screen-xl px-16 py-4 overflow-y-auto">
+        
+            <% if (root !== 'home') { %>
+                <%- include('../' +  root ) %> 
+            <% } else { %>
+                <h1 class="p-10 text-7xl pb-10 text-gray-300">BEM VINDO</h1>
+            <% } %>
+        </div>
+                    
+    </main>
+    
+</body>
+</html>

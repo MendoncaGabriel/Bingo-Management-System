@@ -9,7 +9,6 @@ module.exports = {
             
             
             const newCard = new cardSchema(newObject)
-            console.log(newObject)
             await newCard.save();
         } catch (error) {
             
@@ -20,11 +19,32 @@ module.exports = {
     getById: async (id) => {
         try {
             const card = await cardSchema.findById(id)
-             return card
+            return card
 
         
         } catch (error) {
             throw console.error('Erro pegar item na base de dados!', error);
+        }
+    },
+    getByList: async () => {
+        try {
+            const card = await cardSchema.find()
+            return card
+
+        
+        } catch (error) {
+            throw console.error('Erro pegar item na base de dados por lista!', error);
+        }
+    },
+    getListSort: async () => {
+        try {
+            const list = await cardSchema.find({}).sort({ date: 1 });
+           
+            return list
+
+        
+        } catch (error) {
+            throw console.error('Erro pegar item na base de dados por lista sort!', error);
         }
     },
     update: async (id, data) => {

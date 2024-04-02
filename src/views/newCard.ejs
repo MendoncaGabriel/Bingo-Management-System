@@ -1,116 +1,108 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Bingo</title>
-    <link rel="stylesheet" href="/css/output.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body class="bg-gray-50">
+<h1 class="text-center text-2xl text-cinza font-semibold mb-5">Cadastrar Nova Cartela</h1>
+<hr class="mb-10">
 
-
-
-
-    <section class="border border-red-500 h-screen  ">
-
-        <%- include('./components/navbar.ejs') %> 
-   
-        <!-- screen -->
-        <div class="border border-blue-600 flex    bg-gray-50" style=" height: calc(100vh - 90px);">
-            <%- include('./components/sidebar.ejs') %> 
-
-            <section class="bg-white shadow-md p-10 m-auto max-w-screen-lg w-full rounded-md  border border-green-400">
-
-                <h1 class="text-center text-2xl text-gray-600 font-semibold mb-7">Cadastrar Nova Cartela</h1>
-    
-                <form class="max-w-md mx-auto">
-                    <!-- Titulo -->
-                    <div class="relative z-0 w-full mb-7 group">
-                        <input type="text" name="title" id="title" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="title" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Titulo</label>
-                    </div>
-    
-                    <!-- Categoria -->
-                    <div class="relative z-0 w-full mb-7 group">
-                        <input type="text" name="category" id="category" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="category" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Catégoria</label>
-                    </div>
-    
-                    <!-- Bingos por cartela -->
-                    <div class="relative z-0 w-full mb-7 group">
-                        <input type="number" min="1" max="6"  name="bingosForCards" id="bingosForCards" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="bingosForCards" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Premios por Cartelas</label>
-                    </div>
-    
-                    <!-- Quantidade de cartelas -->
-                    <div class="relative z-0 w-full mb-7 group">
-                        <input type="number" min="1" max="5"  name="NumberOfCards" id="NumberOfCards" class="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                        <label for="NumberOfCards" class="peer-focus:font-medium absolute text-md text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quantidade de Cartelas</label>
-                    </div>
-    
-                    <!-- Tipo de bingo -->
-                    <div class="relative z-0 w-full mb-7 group">
-                        <label for="formFile" class="mb-2 inline-block text-neutral-500 text-md">Padrão de Bingo</label>
-                    
-                        <div class="grid grid-cols-2 gap-2 items-center justify-center">
-                            <div class="flex items-center ps-4 border border-gray-200 hover:bg-green-50 rounded" title="Nesse padrão, 25 números aleatórios entre 1 e 75 são marcados no cartão de bingo.">
-                                <input checked id="bordered-radio-1" type="radio" value="75" name="bordered-radio" class="w-full h-4 text-blue-600 bg-gray-100 border-gray-300">
-                                <label for="bordered-radio-1" class="w-full py-4 ms-2 text-md font-medium text-gray-900">25/75</label>
-                            </div>
-                            <div class="flex items-center ps-4 border border-gray-200 hover:bg-green-50 rounded" title="Nesse padrão, 25 números aleatórios entre 1 e 100 são marcados no cartão de bingo.">
-                                <input id="bordered-radio-2" type="radio" value="100" name="bordered-radio" class="w-full h-4 text-blue-600 bg-gray-100 border-gray-300">
-                                <label for="bordered-radio-2" class="w-full py-4 ms-2 text-md font-medium text-gray-900">25/100</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-    
-                    <!-- Imagem de fundo -->
-                    <div class="relative z-0 w-full mb-7 group">
-                        <div class="mb-3">
-                            <label
-                                for="background"
-                                class="mb-2 inline-block text-neutral-500  text-md"
-                                >Imagem de fundo</label
-                            >
-                            <input
-                                class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none "
-                                type="file"
-                                id="background" />
-                            </div>
-                    </div>
-    
-                    <button 
-                        type="button" 
-                        onclick="createNewCard()"
-                        class="flex justify-center w-full bg-verde hover:brightness-90 hover:shadow-md duration-100 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-md px-5 py-2.5 text-center  bg-green-custom" 
-                    >
-                    
-                        <span class="" id="btnSpanCreate">CRIAR BINGO</span>
-
-                    
-                        <div role="status" class="hidden" id="loadSpin">
-                            <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin  fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                            </svg>
-                            <span class="sr-only">Loading...</span>
-                        </div>
-
-                    </button>
-    
-                </form>
-    
-            </section>
+<form class="grid grid-cols-2 gap-10 text-lg">
+    <div class="text-md text-gray-600">
+        <!-- Titulo -->
+        <div class="relative z-0 w-full mb-7 group">
+            <label for="title" >Titulo <span class="ml-2 text-red-600">*</span></label>
+            <input type="text" name="title" id="title" class="block py-2 px-4 focus:outline-none focus:border-blue-600 w-full    border-b-2 border-gray-300 "  required />
         </div>
-    </section>
+
+        <!-- Categoria -->
+        <div class="relative z-0 w-full mb-7 group">
+            <label for="category" >Catégoria</label>
+            <input type="text" name="category" id="category" class="block py-2 px-4 focus:outline-none focus:border-blue-600 w-full    border-b-2 border-gray-300"   />
+        </div>
+        
+        <!-- Bingos por cartela -->
+        <div class="relative z-0 w-full mb-7 group ">
+            <label for="bingosForCards" >Premios Por cartela <span class="ml-2 text-red-600">*</span></label>
+            <input 
+                maxlength="1"  
+                type="number"   
+                name="bingosForCards" 
+                id="bingosForCards" 
+                class="block py-2 px-4 focus:outline-none focus:border-blue-600 w-full    border-b-2 border-gray-300" 
+                required 
+                min="1" 
+                max="6"
+                oninput="this.value = Math.min(Math.max(parseInt(this.value), 1), 6)"
+                placeholder="1 a 6"
+            />
+        
+        </div>
+        
+        <!-- Quantidade de cartelas -->
+        <div class="relative z-0 w-full mb-7 group">
+            <label for="NumberOfCards" class="">Quantidade <span class="ml-2 text-red-600">*</span></label>
+            <input 
+                type="number"
+                oninput="this.value = Math.min(Math.max(parseInt(this.value), 1), 5000)"
+                maxlength="4"  
+                name="NumberOfCards" 
+                id="NumberOfCards" 
+                class="block py-2 px-4 focus:outline-none focus:border-blue-600 w-full text-gray-900 border-b-2 border-gray-300"  
+                required 
+            />
+        
+        </div>
+    </div>
+
+    <div class="text-md text-gray-600">
+        <!-- Tipo de bingo -->
+        <div class="relative z-0 w-full mb-7 group">
+            <label for="formFile" class="mb-2 inline-block text-neutral-500 ">Padrão de Bingo</label>
+        
+            <div class="grid grid-cols-2 gap-2 items-center justify-center">
+                <div class="flex items-center ps-4 border border-gray-200 hover:bg-green-50 rounded" title="Nesse padrão, 25 números aleatórios entre 1 e 75 são marcados no cartão de bingo.">
+                    <input checked id="bordered-radio-1" type="radio" value="75" name="bordered-radio" class="w-full h-4 text-blue-600 bg-gray-100 border-gray-300">
+                    <label for="bordered-radio-1" class="w-full py-4 ms-2  font-medium ">25/75</label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 hover:bg-green-50 rounded" title="Nesse padrão, 25 números aleatórios entre 1 e 100 são marcados no cartão de bingo.">
+                    <input id="bordered-radio-2" type="radio" value="100" name="bordered-radio" class="w-full h-4 text-blue-600 bg-gray-100 border-gray-300">
+                    <label for="bordered-radio-2" class="w-full py-4 ms-2  font-medium ">25/100</label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Imagem de fundo -->
+        <div class="relative z-0 w-full mb-7 group">
+            <div class="mb-3">
+                <label
+                    for="background"
+                    class="mb-2 inline-block text-neutral-500  "
+                    >Imagem de fundo</label
+                >
+                <input
+                    class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500  bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file: file:px-3  file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none "
+                    type="file"
+                    id="background"
+                />
+            </div>
+        </div>
+    </div>
+    
 
 
+    <button 
+        type="button" 
+        onclick="createNewCard()"
+        class="col-span-2  ml-auto max-w-52 flex justify-center w-full bg-verde hover:brightness-90 hover:shadow-md duration-100 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center  bg-green-custom" 
+    >
+    
+        <span class="" id="btnSpanCreate">CRIAR BINGO</span>
 
-    <script src="/js/page/card.js"></script>
+    
+        <div role="status" class="hidden" id="loadSpin">
+            <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin  fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+            <span class="sr-only">Loading...</span>
+        </div>
 
+    </button>
 
-</body>
-</html>
+</form>
+<script src="/js/page/card.js"></script>
