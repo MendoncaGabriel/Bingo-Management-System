@@ -4,12 +4,13 @@ const cardSchema = require('../database/models/cardSchema')
 const path = require('path');
 require('dotenv').config()
 
-
+// MODELO FUNCIONAL
 exports.create = async (id, res) => {
     try {
         const data = await cardSchema.findById(id);
         
-        const name = data.title
+        const name = data.title.replace(/ /g, '-');
+
     
         const metadata = {
             bingos: data.bingoCards,
@@ -44,7 +45,7 @@ exports.create = async (id, res) => {
                         //salvar caminho do arquivo
                        await cardSchema.findByIdAndUpdate(id, {pdf:  `${name}.pdf`})
 
-                        res.sendFile( path.resolve('public', 'pdf', `${name}.pdf`))
+                        res.sendFile( path.resolve('src','public', 'pdf', `${name}.pdf`))
                         console.log('PDF buildado!')
 
                     }
@@ -55,3 +56,6 @@ exports.create = async (id, res) => {
         throw console.error('Erro ao criar exportar PDF.', error)
     }
 };
+
+
+// MODELO PARALELISMO DE TESTE
