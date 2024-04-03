@@ -1,5 +1,31 @@
 const mongoose = require('mongoose');
 
+const cartela = new mongoose.Schema({
+    cartela_id: {
+        type: String,
+        required: true
+    },
+    index: {
+        type: Number,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    contato: {
+        type: String,
+        default: ''
+    },
+    endereco: {
+        type: String,
+        default: ''
+    },
+    status: {
+        type: Boolean,
+        default: false
+    }
+});
 
 const cardSchema = new mongoose.Schema({
     title: { 
@@ -33,9 +59,12 @@ const cardSchema = new mongoose.Schema({
         type: String,
         default: Date.now()
     },
-    bingoCards: [[Number]]
+    bingoCards: [[Number]],
+    bingosSold: [cartela]
  
 });
+
+
 
 
 

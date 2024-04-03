@@ -70,6 +70,41 @@ module.exports = {
         } catch (error) {
             throw console.error('Erro deletar item na base de dados!', error);
         }
+    },
+    markAsSold: async (data) => {
+        try {
+            // Verificar se o item com o mesmo índice já está no array 'bingosSold'
+            const existingItem = await cardSchema.findOne({ _id: data.cartela_id, 'bingosSold.index': data.index });
+        
+            // Se o item existir, atualize seus dados; caso contrário, adicione um novo item ao array
+            if (existingItem) {
+                // Atualizar os dados do item existente
+                const updatedDoc = await cardSchema.findOneAndUpdate(
+                    { _id: data.cartela_id, 'bingosSold.index': data.index },
+                    { 
+                        $set: {
+                            'bingosSold.$.name': data.name,
+                            'bingosSold.$.contato': data.contato,
+                            'bingosSold.$.endereco': data.endereco,
+                            'bingosSold.$.status': data.status
+                        }
+                    },
+                    { new: true }
+                );
+                return updatedDoc;
+            } else {
+                // Adicionar um novo item ao array 'bingosSold'
+                const updatedDoc = await cardSchema.findByIdAndUpdate(
+                    data.cartela_id,
+                    { $push: { bingosSold: { index: data.index, name: data.name } } },
+                    { new: true }
+                );
+                return updatedDoc;
+            }
+        } catch (error) {
+            console.error('Erro ao marcar como vendido:', error);
+            throw error;
+        }
     }
 
 }

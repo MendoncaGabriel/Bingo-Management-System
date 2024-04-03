@@ -1,45 +1,39 @@
-
+<h1 class="text-center text-2xl text-cinza font-semibold mb-5">Registrar Cartelas Vendidas</h1>
+<hr class="mb-10">
             
-<section class="bg-white shadow-md p-10 m-auto max-w-screen-xl  w-full rounded-md flex-none border border-red-500 h-full ">
-    <section class="space-x-2 mb-5">
+<section class="space-x-2 mb-5">
+    <div class="inline-block">
+        <label for="cardsSelect" class="text-gray-600">Selecionar Cartela:</label> <br>
+        <select name="" id="cardsSelect" class="border px-8 py-2 mb-2">
+            <option value="" disabled selected>Cartelas</option>
+            <% cards.map(e => { %>
+                <option value="<%= e._id %>"><%= e.title  %></option>
+            <% }) %>
+        </select>
+    </div>
 
-        <div class="inline-block">
-            <label for="cardsSelect" class="text-gray-600">Selecionar Cartela:</label> <br>
-            <select name="" id="cardsSelect" class="border px-8 py-2 mb-2">
-                <option value="" disabled selected>Cartelas</option>
-                <% cards.map(e => { %>
-                    <option value="<%= e._id %>"><%= e.title  %></option>
-                <% }) %>
-            </select>
-        </div>
-    
-        <div class="inline-block">
-            <label for="filterNumerBingo" class="text-gray-600">Filtrar por numero:</label> <br>
-            <input id="filterNumerBingo" type="number" class="px-8 py-2 border" placeholder="Numero do Bingo">
-        </div>
-    </section>
-
-    
-
-    <table class="min-w-full border ">
-        <thead>
-            <tr class="bg-gray-100">
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Numero</th>
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Nome Comprador</th>
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Contato</th>
-
-                <!-- ADICIONAR EM POPUP EM ADD MAIS INFORMAÇÕES -->
-                <!-- <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">CPF</th>
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">ENDEREÇO</th>
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">VENDEDOR</th> -->
-                
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Status</th>
-                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Salvar Alterações</th>
-            </tr>
-        </thead>
-        <tbody id="listBingo" class="border-blue-700"></tbody>
-    </table>
+    <div class="inline-block">
+        <label for="filterNumerBingo" class="text-gray-600">Filtrar por numero:</label> <br>
+        <input id="filterNumerBingo" type="number" class="px-8 py-2 border" placeholder="Numero do Bingo">
+    </div>
 </section>
+
+    
+
+<table class="w-full border ">
+    <thead>
+        <tr class="bg-gray-100">
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase ">Numero</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Nome Comprador</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Contato</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Endereço</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Status</th>
+            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Salvar Alterações</th>
+        </tr>
+    </thead>
+    <tbody id="listBingo" ></tbody>
+</table>
+
 
 <!-- Filtro numero bingo -->
 <script>
@@ -85,7 +79,7 @@
     })
 
     function getListCardBingo(id){
-        fetch(`card/getCard/${id}`, {
+        fetch(`card/${id}`, {
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
         })
@@ -116,51 +110,76 @@
         
         listBingo.innerHTML = ''
 
-        res.bingoCards.forEach(e => {
+        res.bingoCards.map((e, index) => {
+            const info = res.bingosSold.find(e => e.index == index)
+            
+
             listBingo.innerHTML += `
-                <tr class="bg-white filterNumber" name="${e.number}">
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">${e.number}</td>
+            <h1
+            
+                <tr class="bg-white filterNumber" name="${index + 1}">
+                    <td class="px-6 py-4 bor" name="index">${index + 1}</td>
 
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <input type="text" name="" id="" value="${e.buyersName.length > 0 ? e.buyersName : ''}" class="px-4 py-1 border border-gray-300" placeholder="Nome do comprador">
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <input type="text" name="" id="" value="${e.contact.length > 0 ? e.contact : ''}" class="px-4 py-1 border border-gray-300" placeholder="Numero para contato">
+                    <td class="px-6 py-4 ">
+                        <input type="text" value="${info && info.name ? info.name : ''}" name="name" class="px-4 py-1 border bor" placeholder="Nome do comprador">
                     </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="Numero para contato">
-                    </td>
-                    
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="000.000.000-00">
+                    <td class="px-6 py-4  ">
+                        <input type="text"  value="${info && info.contato ? info.contato : ''}" name="contato" class="px-4 py-1 border" placeholder="Numero para contato">
                     </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="rua: N99 - Bairro ">
+                    <td class="px-6 py-4 ">
+                        <input type="text"  value="${info && info.endereco ? info.endereco : ''}" name="endereco" class="px-4 py-1 border " placeholder="rua: N99 - Bairro ">
                     </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <input type="text" name="" id="" value="" class="px-4 py-1 border border-gray-300" placeholder="Nome do vendedor">
-                    </td>
-                    
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <select name="" id="" class="border border-gray-300 px-4 py-2 mb-1">
-                            <option value="true" ${e.status == true ? 'selected' : ''} class="text-gray-300">VENDIDO</option>
-                            <option value="false" ${e.status == false ? 'selected' : ''} class="text-gray-300">NÃO VENDIDO</option>
+     
+                    <td class="px-6 py-4 text-sm ">
+                        <select class="p-2 mb-1 border" name="status">
+                            <option value="true" ${info && info.status === true ? 'selected' : ''}>VENDIDO</option>
+                            <option value="false" ${info && info.status == true ? '' : 'selected'}>NÃO VENDIDO</option>
                         </select>
+
                     </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300">
-                        <button class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded-md hover:shadow text-white">SALVAR</button>
+                    <td class="px-6 py-4 ">
+                        <button onclick="updateData(this)" class=" duration-300 px-4 py-1 bg-blue-600 hover:bg-blue-500 rounded-sm hover:shadow text-white">SALVAR</button>
                     </td>
-   
                 </tr>
             `
         });
 
         
     }
+
+
+    function updateData(button) {
+        const tr = button.parentNode.parentNode
+        const item = {
+            cartela_id: document.getElementById('cardsSelect').value,
+            index: Number(tr.querySelector('td[name="index"]').innerHTML) - 1,
+            name: tr.querySelector('input[name="name"]').value,
+            contato: tr.querySelector('input[name="contato"]').value,
+            endereco: tr.querySelector('input[name="endereco"]').value,
+            status: tr.querySelector('select[name="status"]').value,
+        }
+        console.log(item.status); 
+
+
+        fetch('card/sold',{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(item)
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            button.classList.replace('bg-blue-600', 'bg-green-600')
+            setTimeout(() => {
+                button.classList.replace('bg-green-600', 'bg-blue-600')
+                
+            }, 1000);
+        })
+    }
+
+
 
 </script>

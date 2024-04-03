@@ -26,7 +26,9 @@ module.exports = {
         }
     },
     getById: async (req, res) => {
-        const card = cardModel.getById(req.params.id)
+        const id = req.params.id
+        const card = await  cardModel.getById(id)
+
         res.status(200).json(card)
     },
     update: async (req, res) => {
@@ -66,5 +68,10 @@ module.exports = {
         } catch (error) {
             res.status(500).json({ msg: 'Erro interno no servidor', error });
         }
+    },
+    sold: async (req, res) => {
+        const result = await cardModel.markAsSold(req.body)
+        console.log(req.body)
+        res.status(200).json(result)
     }
 }
