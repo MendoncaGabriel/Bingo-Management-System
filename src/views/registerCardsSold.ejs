@@ -42,6 +42,8 @@
     filterNumerBingo.addEventListener('keyup', (e)=>{
         if(e.keyCode == 13){
             const filterNumber = document.querySelectorAll('.filterNumber')
+            console.log('enter')
+            console.log(filterNumber.length)
    
             // Limpar
             filterNumber.forEach((e)=>{
@@ -49,13 +51,12 @@
             })
 
 
-
-            
-
             //Filtar
             filterNumber.forEach((e)=>{
                 let number = e.getAttribute('name')
-                if(number !== filterNumerBingo.value){
+               
+                if(number != filterNumerBingo.value){
+             
                     e.classList.add('hidden')
                 }
             })
@@ -115,8 +116,7 @@
             
 
             listBingo.innerHTML += `
-            <h1
-            
+
                 <tr class="bg-white filterNumber" name="${index + 1}">
                     <td class="px-6 py-4 bor" name="index">${index + 1}</td>
 

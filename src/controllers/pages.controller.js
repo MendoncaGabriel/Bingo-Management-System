@@ -4,6 +4,10 @@ const cardModel = require('../model/cardModel')
 module.exports = {
     home: {
         layout: 'home',
+        conferir: (req, res) => {
+            
+            res.render('layouts/home', { root: 'conferir', nameUser: req.nameUser || ''   });
+        },
         index: (req, res) => {
             
             res.render('layouts/home', { root: 'home', nameUser: req.nameUser || ''   });

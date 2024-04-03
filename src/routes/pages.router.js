@@ -18,6 +18,7 @@ router.get('/editar-cartela', pages.home.update)
 router.get('/cartelas', pages.home.list)
 router.get('/cartela/:id', pages.home.renderPDF)
 router.get('/registrar-cartelas-vendidas', pages.home.registerSold)
+router.get('/conferir', pages.home.conferir)
 router.get('/login', pages.auth.login)
 router.get('/register', pages.auth.register)
 router.get('/', pages.home.index);
