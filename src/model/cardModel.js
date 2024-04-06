@@ -36,6 +36,16 @@ module.exports = {
             throw console.error('Erro pegar item na base de dados por lista!', error);
         }
     },
+    getByListSold: async (id) => {
+        try {
+            const card = await cardSchema.findById(id)
+            const cardSold = card.bingosSold.filter(e => e.status == true)
+            return {bingoPattern: card.bingoPattern, cardSold}
+
+        } catch (error) {
+            throw console.error('Erro pegar item na base de dados por lista!', error);
+        }
+    },
     getListSort: async () => {
         try {
             const list = await cardSchema.find({}).sort({ date: 1 });
@@ -73,20 +83,28 @@ module.exports = {
     },
     markAsSold: async (data) => {
         try {
-            // Verificar se o item com o mesmo índice já está no array 'bingosSold'
-            const existingItem = await cardSchema.findOne({ _id: data.cartela_id, 'bingosSold.index': data.index });
+           console.log('DATA:', data)
+           // Verificar se o item com o mesmo índice já está no array 'bingosSold'
+           const existingItem = await cardSchema.findOne({ _id: data.cartela_id, 'bingosSold.index': data.index });
+           console.log('existingItem:', existingItem)
+
+            const bingo = await cardSchema.findById(data.cartela_id)
+         
         
-            // Se o item existir, atualize seus dados; caso contrário, adicione um novo item ao array
+            // Atualizar dados
             if (existingItem) {
                 // Atualizar os dados do item existente
                 const updatedDoc = await cardSchema.findOneAndUpdate(
                     { _id: data.cartela_id, 'bingosSold.index': data.index },
                     { 
                         $set: {
-                            'bingosSold.$.name': data.name,
-                            'bingosSold.$.contato': data.contato,
-                            'bingosSold.$.endereco': data.endereco,
-                            'bingosSold.$.status': data.status
+                            'bingosSold.$.name': data.name || '',
+                            'bingosSold.$.contato': data.contato || '',
+                            'bingosSold.$.endereco': data.endereco || '',
+                            'bingosSold.$.status': data.status || '',
+                            // 'bingosSold.$.bingo': bingo.bingoCards[data.index],
+                            'bingosSold.$.cpf': data.cpf || '',
+                            'bingosSold.$.vendedor': data.vendedor || ''
                         }
                     },
                     { new: true }
@@ -94,13 +112,26 @@ module.exports = {
                 return updatedDoc;
             } else {
                 // Adicionar um novo item ao array 'bingosSold'
+
                 const updatedDoc = await cardSchema.findByIdAndUpdate(
                     data.cartela_id,
-                    { $push: { bingosSold: { index: data.index, name: data.name } } },
+                    { $push: { bingosSold: { 
+                        index: data.index, 
+                        name: data.name || '',
+                        contato: data.contato || '',
+                        endereco: data.endereco || '',
+                        cpf: data.cpf || '',
+                        vendedor: data.vendedor || '',
+                        status: data.status || false,
+                        bingo: bingo.bingoCards[data.index] || '',
+                    }}},
                     { new: true }
                 );
                 return updatedDoc;
             }
+
+
+
         } catch (error) {
             console.error('Erro ao marcar como vendido:', error);
             throw error;

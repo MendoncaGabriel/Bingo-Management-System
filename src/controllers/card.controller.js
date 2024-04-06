@@ -46,7 +46,6 @@ module.exports = {
                 data.background = req.file.filename
             }
       
-    
             const updatedCard = await cardModel.update(req.params.id, data)
             if (!updatedCard) {
                 return res.status(404).json({ msg: 'Cartela não encontrada.' });
@@ -70,8 +69,15 @@ module.exports = {
         }
     },
     sold: async (req, res) => {
-        const result = await cardModel.markAsSold(req.body)
-        console.log(req.body)
+        const data = req.body
+        const result = await cardModel.markAsSold(data)
+       
+        res.status(200).json(result)
+    },
+    getByListSold: async (req, res) => {
+        const id = req.params.id
+        const result = await cardModel.getByListSold(id)
+       
         res.status(200).json(result)
     }
 }

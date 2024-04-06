@@ -13,6 +13,12 @@ const cartela = new mongoose.Schema({
         type: String,
         required: true
     },
+    cpf: {
+        type: String,
+    },
+    vendedor: {
+        type: String,
+    },
     contato: {
         type: String,
         default: ''
@@ -24,6 +30,10 @@ const cartela = new mongoose.Schema({
     status: {
         type: Boolean,
         default: false
+    },
+    bingo: {
+        type: Array,
+        default: []
     }
 });
 

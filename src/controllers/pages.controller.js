@@ -4,9 +4,10 @@ const cardModel = require('../model/cardModel')
 module.exports = {
     home: {
         layout: 'home',
-        conferir: (req, res) => {
+        conferir: async (req, res) => {
+            let bingos = await cardModel.getByList()
             
-            res.render('layouts/home', { root: 'conferir', nameUser: req.nameUser || ''   });
+            res.render('layouts/home', { root: 'conferir', nameUser: req.nameUser || '', bingos   });
         },
         index: (req, res) => {
             

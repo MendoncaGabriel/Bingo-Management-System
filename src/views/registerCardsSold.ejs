@@ -1,4 +1,4 @@
-<h1 class="text-center text-2xl text-cinza font-semibold mb-5">Registrar Cartelas Vendidas</h1>
+<h1 class="text-center text-2xl text-cinza font-semibold mb-5">VALIDAR CARTELAS VENDIDAS</h1>
 <hr class="mb-10">
             
 <section class="space-x-2 mb-5">
@@ -20,15 +20,17 @@
 
     
 
-<table class="w-full border ">
-    <thead>
-        <tr class="bg-gray-100">
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase ">Numero</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Nome Comprador</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Contato</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Endereço</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Status</th>
-            <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold uppercase">Salvar Alterações</th>
+<table class="w-full border">
+    <thead >
+        <tr class="bg-gray-200 text-xs font-semibold uppercase text-center ">
+            <th class="p-2 border border-gray-300">Numero</th>
+            <th class="p-2 border border-gray-300">Nome Comprador</th>
+            <th class="p-2 border border-gray-300">Contato</th>
+            <th class="p-2 border border-gray-300">Endereço</th>
+            <th class="p-2 border border-gray-300">Cpf</th>
+            <th class="p-2 border border-gray-300">Vendedor</th>
+            <th class="p-2 border border-gray-300">Status</th>
+            <th class="p-2 border  border-gray-300">Salvar Alterações</th>
         </tr>
     </thead>
     <tbody id="listBingo" ></tbody>
@@ -75,6 +77,7 @@
 <!-- Buscar por cartela -->
 <script>
     const cardsSelect = document.getElementById('cardsSelect')
+
     cardsSelect.addEventListener('change', (e)=>{
         getListCardBingo(e.target.value)
     })
@@ -89,6 +92,7 @@
             renderList(res)
         })
     }
+    
     function formatarData(timestamp) {
     if (!timestamp) {
         return "Timestamp não definido";
@@ -108,60 +112,68 @@
 
     function renderList(res){
         const listBingo = document.querySelector('tbody#listBingo')
+        let lista = ''
         
-        listBingo.innerHTML = ''
-
         res.bingoCards.map((e, index) => {
             const info = res.bingosSold.find(e => e.index == index)
-            
-
-            listBingo.innerHTML += `
-
-                <tr class="bg-white filterNumber" name="${index + 1}">
-                    <td class="px-6 py-4 bor" name="index">${index + 1}</td>
-
-                    <td class="px-6 py-4 ">
-                        <input type="text" value="${info && info.name ? info.name : ''}" name="name" class="px-4 py-1 border bor" placeholder="Nome do comprador">
+        
+            lista += `
+                <tr class="bg-white text-sm filterNumber" name="${index + 1}">
+                    <td class="p-2 border" >
+                        <p class="text-center" name="index">${index + 1}</p>
                     </td>
 
-                    <td class="px-6 py-4  ">
-                        <input type="text"  value="${info && info.contato ? info.contato : ''}" name="contato" class="px-4 py-1 border" placeholder="Numero para contato">
+                    <td class="p-2 border">
+                        <input type="text" value="${info && info.name ? info.name : ''}" name="name" class="p-2" placeholder="Nome do comprador">
                     </td>
 
-                    <td class="px-6 py-4 ">
-                        <input type="text"  value="${info && info.endereco ? info.endereco : ''}" name="endereco" class="px-4 py-1 border " placeholder="rua: N99 - Bairro ">
+                    <td class="p-2 border">
+                        <input type="tel"  value="${info && info.contato ? info.contato : ''}" name="contato" class="p-2 w-40" placeholder="Numero para contato">
+                    </td>
+
+                    <td class="p-2 border">
+                        <input type="text"  value="${info && info.endereco ? info.endereco : ''}" name="endereco" class="p-2 " placeholder="rua: N99 - Bairro ">
                     </td>
      
-                    <td class="px-6 py-4 text-sm ">
-                        <select class="p-2 mb-1 border" name="status">
+                    <td class="p-2 border">
+                        <input type="text"  value="${info && info.cpf ? info.cpf : ''}" name="cpf" class="p-2  w-28 " placeholder="000.000.000-00">
+                    </td>
+
+                    <td class="p-2 border">
+                        <input type="text"  value="${info && info.vendedor ? info.vendedor : ''}" name="vendedor" class="p-2  " placeholder="Nome do Vendedor">
+                    </td>
+      
+                    <td class="border">
+                        <select class="p-2 text-sm w-full h-full" name="status">
                             <option value="true" ${info && info.status === true ? 'selected' : ''}>VENDIDO</option>
                             <option value="false" ${info && info.status == true ? '' : 'selected'}>NÃO VENDIDO</option>
                         </select>
-
                     </td>
 
-                    <td class="px-6 py-4 ">
-                        <button onclick="updateData(this)" class=" duration-300 px-4 py-1 bg-blue-600 hover:bg-blue-500 rounded-sm hover:shadow text-white">SALVAR</button>
+                    <td class="p-2 border">
+                        <button onclick="updateData(this)" class="p-2 m-auto block bg-blue-600 hover:bg-blue-500 rounded-sm hover:shadow text-white">SALVAR</button>
                     </td>
                 </tr>
             `
+        
+            listBingo.innerHTML = lista
         });
 
         
     }
 
-
     function updateData(button) {
         const tr = button.parentNode.parentNode
         const item = {
             cartela_id: document.getElementById('cardsSelect').value,
-            index: Number(tr.querySelector('td[name="index"]').innerHTML) - 1,
+            index: Number(tr.querySelector('p[name="index"]').innerHTML) - 1,
             name: tr.querySelector('input[name="name"]').value,
             contato: tr.querySelector('input[name="contato"]').value,
             endereco: tr.querySelector('input[name="endereco"]').value,
             status: tr.querySelector('select[name="status"]').value,
+            cpf: tr.querySelector('input[name="cpf"]').value,
+            vendedor: tr.querySelector('input[name="vendedor"]').value,
         }
-        console.log(item.status); 
 
 
         fetch('card/sold',{
@@ -171,15 +183,10 @@
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res)
             button.classList.replace('bg-blue-600', 'bg-green-600')
             setTimeout(() => {
                 button.classList.replace('bg-green-600', 'bg-blue-600')
-                
             }, 1000);
         })
     }
-
-
-
 </script>
