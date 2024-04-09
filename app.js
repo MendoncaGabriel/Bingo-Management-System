@@ -7,7 +7,6 @@ require('dotenv').config()
 require('./src/database/connect.js')
 const path = require('path')
 const PORT = process.env.PORT
-
 const app = express()
 
 app.use(compression())
@@ -21,12 +20,17 @@ app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/src/views');
 
+
+
 const pages = require('./src/routes/pages.router.js')
 const auth = require('./src/routes/auth.router.js')
 const card = require('./src/routes/card.router.js')
 
-app.use('/', pages)
+
 app.use('/auth', auth)
+
+
+app.use('/', pages)
 app.use('/card', card)
 
 

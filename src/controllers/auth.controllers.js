@@ -36,6 +36,7 @@ exports.register = async (req, res) => {
 				}
             })
     } catch(error){
+		console.log(error)
         res.status(500).json({msg: 'Erro interno no sservidor', error})
     }
     

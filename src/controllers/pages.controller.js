@@ -37,6 +37,7 @@ module.exports = {
     auth: {
         layout: 'auth',
         login: (req, res) => {
+            console.log('////////////////////////////////////')
             res.render('login');
         },
         register: (req, res) => {
