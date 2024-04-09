@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const cardController = require('../controllers/card.controller')
 const upload = require('../middlewares/upload/upload')
+const jwt = require('jsonwebtoken')
 
 router.use(async (req, res, next) => {
     try {        

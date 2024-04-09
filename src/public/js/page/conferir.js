@@ -64,7 +64,7 @@ insertPedra.addEventListener('change', (e)=>{
     
 
     for(let i of pedras){
-        lista += `<li class="p-5  flex items-center justify-center rounded-xl bg-blue-600 text-white w-10 h-10 flex-none ">${verificarColuna(i)}</li>`
+        lista += `<li class="p-5  flex items-center justify-center rounded-xl bg-white text-verde font-semibold text-lg w-10 h-10 flex-none ">${verificarColuna(i)}</li>`
     }
     pedrasDigitadas.innerHTML = lista
 
@@ -135,6 +135,28 @@ function renderRank(ocorrencias){
 
     // Loop para renderizar até 10 elementos, ou menos se ocorrencias.length for menor que 10
     for(let i = 0; i < limiteLoop; i++){ 
-        rankList.innerHTML += `<li>N: ${ocorrencias[i].cont} - ${ocorrencias[i].item.name} </li>`;
+        rankList.innerHTML += `<li class="text-verde px-2 py-1 rounded-full bg-white text-center font-semibold text-lg">N: ${ocorrencias[i].cont} - ${ocorrencias[i].item.name} </li>`;
     }
+}
+
+
+function jogar(){
+    document.querySelector('#modalPlay').classList.add('hidden')
+    document.querySelector('#conferencia').classList.replace('hidden', 'block')
+ 
+    
+
+   
+    // Obtém o elemento <select> pelo ID
+    const selectElement = document.getElementById("bingoSelect");
+
+    // Obtém o índice da opção selecionada
+    const selectedIndex = selectElement.selectedIndex;
+
+    // Obtém o texto da opção selecionada
+    const selectedOptionText = selectElement.options[selectedIndex].textContent;
+
+    let upperCase = selectedOptionText.toUpperCase()
+    //Escreve o titulo
+    document.querySelector('#tituloJogo').innerText = upperCase
 }

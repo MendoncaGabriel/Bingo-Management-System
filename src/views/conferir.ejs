@@ -1,46 +1,54 @@
-<h1 class="text-center text-2xl text-cinza font-semibold mb-5">CONFERÊNCIA</h1>
-<hr class="mb-10">
+<section class="h-full flex items-end justify-center" id="modalPlay">
+    
+    <section class="border flex items-center flex-col m-auto max-w-96 space-y-5 p-10 rounded-2xl shadow-md">
+        <h1 class="text-5xl text-cinza font-semibold">NOVO JOGO</h1>
+
+        <select name="" id="bingoSelect" class="border border-cinza px-4 py-2 rounded-sm w-full">
+            <option selected disabled value="">Selecione o Bingo</option>
+            <% bingos.forEach(e => { %>
+                <option value="<%= e._id  %>"><%= e.title  %></option>
+            <% }) %>
+        </select>
+
+        <button onclick="jogar()" class="bg-verde w-full text-white px-4 py-4 text-2xl font-semibold ">JOGAR</button>
+    </section>
+
+</section>
+
+<section class="hidden  " id="conferencia">
+
+    <h1 class="text-center text-2xl text-cinza font-semibold mb-5 " id="tituloJogo"></h1>
+   
+   
+
+    <div class="grid grid-cols-2 p-10 rounded-xl shadow-md border gap-10 ">
+        <div class="border-2 border-verde p-5 space-y-10 duration-500">
+            <div>
+                <label for="insertPedra" class="text-sm">Digite Numero da Pedra</label><br>
+                <input type="text" placeholder="PEDRA" id="insertPedra" class="border px-4 py-2 border-gray-300 rounded-sm ">
+            </div>
+
+            <h1 id="ultimaPedra" class="m-auto  text-center text-6xl bg-verde text-white font-semibold rounded-full w-56 h-56 flex items-center justify-center">BINGO</h1>
+        </div>
 
 
-<select name="" id="bingoSelect" class="border px-4 py-2 rounded-sm">
-    <option selected disabled value="">Selecione o Bingo</option>
-    <% bingos.forEach(e => { %>
-     <option value="<%= e._id  %>"><%= e.title  %></option>
-    <% }) %>
-</select>
-
-<br>
-<hr>
-<br>
-
-<div>
-    <label for="insertPedra" class="text-sm">Digite Numero da Pedra</label><br>
-    <input type="text" placeholder="PEDRA" id="insertPedra" class="border px-4 py-2 border-gray-300 rounded-sm ">
-</div>
-
-<br>
-<hr>
-<br>
-
-<div>
-    <h1 id="ultimaPedra" class="m-auto  text-center text-5xl bg-blue-500 text-white font-semibold rounded-full w-40 h-40 flex items-center justify-center">BINGO</h1>
-
-    <div>
-        <h2 class="text-2xl text-gray-600">Pedras</h2>
-        <hr>
-        <ul id="pedrasDigitadas" class="grid grid-cols-12 w-full  border gap-5 gap-y-5"></ul>
+        
+        <div class="border-2 border-verde p-4 space-y-10 duration-500 bg-verde">
+            <div class="p-5">
+                <h2 class="text-2xl text-white">Pedras</h2>
+                <hr class="border-white"><br>
+                <ul id="pedrasDigitadas" class="grid grid-cols-10 w-full  gap-5 gap-y-3"></ul>
+            </div>
+            
+            <div class="p-5">
+                <h2 class="text-2xl text-white">Rank</h2>
+                <hr class="border-white "><br>
+                <ul id="rankList" class="space-y-2"></ul>
+            </div>
+        </div>
     </div>
-</div>
-
-
-
-  
-<br>
-<br>
-
-<h2 class="text-2xl text-gray-600">Rank</h2>
-<hr>
-<ul id="rankList"></ul>
+    
+</section>
 
 
 
