@@ -4,7 +4,7 @@ const cardSchema = require('../database/models/cardSchema')
 const path = require('path');
 require('dotenv').config()
 
-// MODELO FUNCIONAL
+// // MODELO FUNCIONAL
 exports.create = async (id, res) => {
     try {
         const data = await cardSchema.findById(id);
@@ -57,5 +57,3 @@ exports.create = async (id, res) => {
     }
 };
 
-
-// MODELO PARALELISMO DE TESTE
