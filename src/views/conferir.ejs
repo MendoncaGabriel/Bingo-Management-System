@@ -1,7 +1,7 @@
 <section class="h-full flex items-end justify-center" id="modalPlay">
     
     <section class="border flex items-center flex-col m-auto max-w-96 space-y-5 p-10 rounded-2xl shadow-md">
-        <h1 class="text-5xl text-cinza font-semibold">NOVO JOGO</h1>
+        <h1 class="text-4xl text-cinza font-semibold">NOVO SORTEIO</h1>
 
         <select name="" id="bingoSelect" class="border border-cinza px-4 py-2 rounded-sm w-full">
             <option selected disabled value="">Selecione o Bingo</option>
@@ -10,37 +10,39 @@
             <% }) %>
         </select>
 
-        <button onclick="jogar()" class="bg-verde w-full text-white px-4 py-4 text-2xl font-semibold ">JOGAR</button>
+        <button onclick="jogar()" class="bg-verde w-full text-white px-4 py-4 text-2xl font-semibold ">COMEÇAR</button>
     </section>
 
 </section>
 
-<section class="hidden  " id="conferencia">
+<section class="hidden  relative " id="conferencia">
 
     <h1 class="text-center text-2xl text-cinza font-semibold mb-5 " id="tituloJogo"></h1>
+    <button onclick="telacheia()" class="absolute top-1 right-2 px-4 py-2 rounded-md bg-verde hover:brightness-105 text-white">Tela Cheia</button>
    
    
 
-    <div class="grid grid-cols-2 p-10 rounded-xl shadow-md border gap-10 ">
+    <div class="grid grid-cols-2 p-10 rounded-xl shadow-md  gap-10  ">
         <div class="border-2 border-verde p-5 space-y-10 duration-500">
-            <div>
-                <label for="insertPedra" class="text-sm">Digite Numero da Pedra</label><br>
+            <div class="flex space-x-3 mb-5 items-center">
+                <label for="insertPedra" class="text-sm">Digite Numero da Pedra:</label><br>
                 <input type="text" placeholder="PEDRA" id="insertPedra" class="border px-4 py-2 border-gray-300 rounded-sm ">
             </div>
+            <hr><br>
 
-            <h1 id="ultimaPedra" class="m-auto  text-center text-6xl bg-verde text-white font-semibold rounded-full w-56 h-56 flex items-center justify-center">BINGO</h1>
+            <h1 id="ultimaPedra" class="m-auto  text-center text-8xl bg-verde text-white font-semibold rounded-full w-80 h-80  flex items-center justify-center">BINGO</h1>
         </div>
 
 
         
-        <div class="border-2 border-verde p-4 space-y-10 duration-500 bg-verde">
-            <div class="p-5">
+        <div class="border-2 border-verde p-2 space-y-10 duration-500 bg-verde">
+            <div class="p-2">
                 <h2 class="text-2xl text-white">Pedras</h2>
                 <hr class="border-white"><br>
-                <ul id="pedrasDigitadas" class="grid grid-cols-10 w-full  gap-5 gap-y-3"></ul>
+                <ul id="pedrasDigitadas" class="grid grid-cols-10 w-full  gap-2"></ul>
             </div>
             
-            <div class="p-5">
+            <div class="p-2">
                 <h2 class="text-2xl text-white">Rank</h2>
                 <hr class="border-white "><br>
                 <ul id="rankList" class="space-y-2"></ul>
@@ -48,10 +50,26 @@
         </div>
     </div>
     
-    <button class="bg-red-400 hover:bg-red-500 px-4 py-2 text-white mt-5 hidden" id="btnLimpar">LIMPAR</button>
+    <button class="bg-red-400 hover:bg-red-500 px-4 py-2 text-white mt-5 " id="btnLimpar">LIMPAR</button>
 </section>
 
 
+
+<section id="ganhadores" class="hidden rounded-xl border bg-white shadow-lg p-16 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 space-y-5 text-center">
+    <img src="/logo.png" alt="" class="w-56 m-auto">
+
+    <h2 class="text-6xl text-gray-900 font-semibold">DEU BINGO!</h2>
+
+    <p id="infoGanhadores"></p><br>
+
+    <button onclick="fecharModal()" class="bg-verde px-4 py-2 m-auto block text-white rounded-md">OK</button>
+</section>
+
+<script>
+    function fecharModal(){
+        document.getElementById('ganhadores').style.display = 'none'
+    }
+</script>
 
 
 

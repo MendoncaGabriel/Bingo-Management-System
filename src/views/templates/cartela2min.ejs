@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PDF com Conteúdo em Páginas Alternadas</title>
+    <style>
+        *{padding:0;margin:0;box-sizing:border-box}body{width:209.9mm;height:296.86mm}.folha{width:209.9mm;height:296.86mm;position:relative;background-image:url('<%= background %>');background-position:center;background-repeat:no-repeat;background-size:cover}.num_cartela{width:49.30mm;height:17.43mm;right:5.05mm;border:1px solid white;position:absolute;color:#292929;text-align:center;background-color:#fff;border-radius:5px}.canhoto{top:26.05mm}.nao_canhoto{top:52.33mm}.bingo{width:50mm;height:60mm;background-color:#fff;position:absolute;border-radius:5px;overflow:hidden}.hr{border:2px solid white;position:absolute;top:48mm;width:100%;border-style:dashed}.grid-container{width:100%;overflow:hidden}.grid-item{width:10mm;height:10.1mm;float:left;border:1px solid #dcdcdc;text-align:center;background-color:#f9f9f9;line-height:10.1mm}.b{font-weight:bold;background-color:#c3c3c3;border:none}
+    </style></head><body><%
+    let escolha = bingoQuantity
+    let geral = ""
+
+    function gerarBingo(arr) {
+        return `
+            <div class="grid-container">
+            <div class="grid-item b">B</div>
+            <div class="grid-item b">I</div>
+            <div class="grid-item b">N</div>
+            <div class="grid-item b">G</div>
+            <div class="grid-item b">O</div>
+            <div class="grid-item">${arr[0]}</div>
+            <div class="grid-item">${arr[5]}</div>
+            <div class="grid-item">${arr[10]}</div>
+            <div class="grid-item">${arr[15]}</div>
+            <div class="grid-item">${arr[20]}</div>
+            <div class="grid-item">${arr[1]}</div>
+            <div class="grid-item">${arr[6]}</div>
+            <div class="grid-item">${arr[11]}</div>
+            <div class="grid-item">${arr[16]}</div>
+            <div class="grid-item">${arr[21]}</div>
+            <div class="grid-item">${arr[2]}</div>
+            <div class="grid-item">${arr[7]}</div>
+            <div class="grid-item">${arr[12]}</div>
+            <div class="grid-item">${arr[17]}</div>
+            <div class="grid-item">${arr[22]}</div>
+            <div class="grid-item">${arr[3]}</div>
+            <div class="grid-item">${arr[8]}</div>
+            <div class="grid-item">${arr[13]}</div>
+            <div class="grid-item">${arr[18]}</div>
+            <div class="grid-item">${arr[23]}</div>
+            <div class="grid-item">${arr[4]}</div>
+            <div class="grid-item">${arr[9]}</div>
+            <div class="grid-item">${arr[14]}</div>
+            <div class="grid-item">${arr[19]}</div>
+            <div class="grid-item">${arr[24]}</div>
+            </div>
+        `
+    }
+    
+    for(let i=0; i < bingos.length; i++){
+        geral += `
+        <div class="folha">
+            <div class='num_cartela nao_canhoto'><h4>CARTELA Nº</h4><h1>${i+1}</h1></div>
+            <hr>
+            <div class='num_cartela canhoto'><h4>CARTELA Nº</h4><h1>${i+1}</h1></div>
+        </div>
+       `
+       if(escolha===1){geral+=`
+                <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+            `}else if(escolha===2){geral+=`
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+            `}else if(escolha===3){geral+=`
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+            `}else if(escolha===4){geral+=`
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 39%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 39%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+            `}else if(escolha===5){geral+=`
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 39%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 39%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+            `}else if(escolha===6){geral+=`
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 39%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 39%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 39%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+                <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+                    ${gerarBingo(bingos[i])}
+                </div>
+            `}
+
+        
+        geral += `</div>`
+    }
+    %><%- geral %></body>
+</html>

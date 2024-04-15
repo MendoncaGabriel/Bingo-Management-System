@@ -11,7 +11,7 @@ module.exports = {
         },
         index: (req, res) => {
             
-            res.render('layouts/home', { root: 'home', nameUser: req.nameUser || ''   });
+            res.render('layouts/home', { root: 'home', nameUser: req.nameUser || '' , title: 'SANTO BINGO'  });
         },
         create: (req, res) => {
             res.render('layouts/home', { root: 'newCard', nameUser: req.nameUser || '', title: 'CADASTRAR NOVA CARTELA'  });
@@ -27,8 +27,19 @@ module.exports = {
         },
         renderPDF: async (req, res) => {
             const id = req.params.id;
-            await pdfModel.create(id, res);
+            
+            // Responder imediatamente ao cliente
+            res.status(200).json({ msg: "Seu PDF está em construção, isso pode levar um tempo. Por favor, aguarde!" });
+
+        
+            // Iniciar o processo de criação do PDF em segundo plano
+            try {
+                pdfModel.create(id);
+            } catch (error) {
+                console.error("Erro ao criar PDF:", error);
+            }
         },
+        
         registerSold: async (req, res) => {
             try {                
                 const cards = await cardModel.getByList()

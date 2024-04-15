@@ -37,7 +37,7 @@
                         Editar
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Buildar PDF
+                        Gerar PDF
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Download
@@ -72,9 +72,9 @@
                             </a>
                         </td>
                         <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
-                            <a href="/cartela/<%= element._id %>" target="_blank"  class="font-medium text-blue-600  hover:underline m-auto block">
+                            <button onclick="buildPDF('<%= element._id %>')" target="_blank"  class="font-medium text-blue-600  hover:underline m-auto block">
                                 <img src="/icons/icons8-pdf-100.png" class="w-6" alt="">
-                            </a>
+                            </button>
                         </td>
                         <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
                             <% if (typeof element.pdf != "undefined" && element.pdf) { %>                                     
@@ -97,6 +97,7 @@
         
     </div>
 
+    
 
 
 <script src="/js/page/card.js"></script>
