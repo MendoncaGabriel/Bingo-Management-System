@@ -19,6 +19,7 @@ function deleteCard(id){
         });
     }
 }
+
 function updateCard(cardId) {
     // Obtenha a referência para o input de arquivo de imagem
     var imageInput = document.querySelector('#background');
@@ -57,14 +58,17 @@ function updateCard(cardId) {
             console.error('Error during fetch:', err);
         });
 }
+
 function loadCreate(){
     document.querySelector('#btnSpanCreate').classList.add('hidden')
     document.querySelector('#loadSpin').classList.remove('hidden')
 }
+
 function stopLoadCreate(){
     document.querySelector('#btnSpanCreate').classList.remove('hidden')
     document.querySelector('#loadSpin').classList.add('hidden')
 }
+
 function createNewCard() {
     loadCreate()
     // Obtenha a referência para o input de arquivo de imagem

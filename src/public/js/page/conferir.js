@@ -3,10 +3,24 @@ const insertPedra = document.querySelector('#insertPedra')
 const rankList = document.querySelector('#rankList')
 const pedrasDigitadas = document.querySelector('#pedrasDigitadas')
 const ultimaPedra = document.querySelector('#ultimaPedra')
+const btnLimpar = document.querySelector('#btnLimpar')
 
 let bingos = []
 const pedras = []
 let bingoPattern = 0
+
+
+//persistir dados
+insertPedra.addEventListener('change', (e)=>{
+    if(!localStorage.pedras){
+        localStorage.pedras = JSON.stringify([verificarColuna(e.target.value)])
+    }else{
+        const array = JSON.parse(localStorage.pedras)
+        array.push(verificarColuna(e.target.value))
+        localStorage.pedras = JSON.stringify(array)
+    }
+    btnLimpar.classList.remove('hidden')
+})
 
 
 //selecionar deck de cartelas
@@ -42,7 +56,7 @@ insertPedra.addEventListener('change', (e)=>{
     }
 
     if(!pedras.includes(Number(pedra))){
-        console.log(pedras.length)
+        // console.log(pedras.length)
 
         if(pedras.length >= bingoPattern){
             alert("JOGO ENCERRADO!")
@@ -95,8 +109,8 @@ function verificarColuna(i){
 
 function verificar() {
     
-    console.log('BINGOS: ', bingos); 
-    console.log('PEDRAS DIGITADAS: ', pedras);
+    // console.log('BINGOS: ', bingos); 
+    // console.log('PEDRAS DIGITADAS: ', pedras);
 
     const ocorrencias = []
 
@@ -120,11 +134,47 @@ function verificar() {
     }
 
     const ordenado = ocorrencias.sort((a, b) => b.cont - a.cont)
-    console.log('OCORRENCIAS: ' + ordenado.length)
+
+   
+    localStorage.rank = JSON.stringify(ordenado)
+   
+
+    // console.log('OCORRENCIAS: ' + ordenado.length)
     renderRank(ordenado)
+
 
     
 }
+
+if(localStorage.rank){
+    const ordenado = JSON.parse(localStorage.rank)
+    renderRank(ordenado)
+}
+
+if(localStorage.pedras){
+    const pedrasSaved = JSON.parse(localStorage.pedras)
+
+    let lista = ''
+    
+    for(let i of pedrasSaved){
+        lista += `<li class="p-5  flex items-center justify-center rounded-xl bg-white text-verde font-semibold text-lg w-10 h-10 flex-none ">${i}</li>`
+    }
+    pedrasDigitadas.innerHTML = lista
+}
+
+
+if(localStorage.pedras || localStorage.rank){
+    btnLimpar.classList.remove('hidden')
+}
+
+btnLimpar.addEventListener('click', ()=>{
+    const res = prompt('Deseha limpar memoria do jogo?: sim/não')
+    if(res == 'sim'){
+        localStorage.clear();
+        window.location.reload()
+
+    }
+})
 
 //renderizar top 10
 function renderRank(ocorrencias){
@@ -141,22 +191,28 @@ function renderRank(ocorrencias){
 
 
 function jogar(){
-    document.querySelector('#modalPlay').classList.add('hidden')
-    document.querySelector('#conferencia').classList.replace('hidden', 'block')
- 
+
+    if(bingoSelect.value != ""){
+        document.querySelector('#modalPlay').classList.add('hidden')
+        document.querySelector('#conferencia').classList.replace('hidden', 'block')
+     
+        // Obtém o elemento <select> pelo ID
+        const selectElement = document.getElementById("bingoSelect");
     
-
-   
-    // Obtém o elemento <select> pelo ID
-    const selectElement = document.getElementById("bingoSelect");
-
-    // Obtém o índice da opção selecionada
-    const selectedIndex = selectElement.selectedIndex;
-
-    // Obtém o texto da opção selecionada
-    const selectedOptionText = selectElement.options[selectedIndex].textContent;
-
-    let upperCase = selectedOptionText.toUpperCase()
-    //Escreve o titulo
-    document.querySelector('#tituloJogo').innerText = upperCase
+        // Obtém o índice da opção selecionada
+        const selectedIndex = selectElement.selectedIndex;
+    
+        // Obtém o texto da opção selecionada
+        const selectedOptionText = selectElement.options[selectedIndex].textContent;
+    
+        let upperCase = selectedOptionText.toUpperCase()
+        //Escreve o titulo
+        document.querySelector('#tituloJogo').innerText = upperCase
+    }else{
+        alert('Selecione um jogo!')
+    }
+    
 }
+
+
+

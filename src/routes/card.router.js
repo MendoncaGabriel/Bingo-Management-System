@@ -29,7 +29,7 @@ router.use(async (req, res, next) => {
 //AS ROTAS ABAIXO NECESSITAM AUTENTICAÇÃO ////////////////////////////////////
 router.post('/sold', cardController.sold)
 router.post('/',  upload.single('background'), cardController.create)
-router.get('/:id', cardController.getById)
+router.get('/cards/:id', cardController.getById)
 router.get('/vendidos/:id', cardController.getByListSold)
 router.patch('/:id', upload.single('background'), cardController.update)
 router.delete('/:id', cardController.delete)
