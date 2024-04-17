@@ -42,6 +42,10 @@ const cardSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
+    trancado: {
+        type: Boolean,
+        default: false
+    },
     pdf: {
         type: String
     },

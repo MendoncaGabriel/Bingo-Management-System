@@ -30,7 +30,13 @@
             </div>
             <hr><br>
 
-            <h1 id="ultimaPedra" class="m-auto  text-center text-8xl bg-verde text-white font-semibold rounded-full w-80 h-80  flex items-center justify-center">BINGO</h1>
+            <div class="relative">
+                <h1 id="ultimaPedra" class="m-auto   text-center text-8xl bg-verde text-white font-semibold rounded-full w-80 h-80  flex items-center justify-center">
+                    BINGO 
+                </h1>
+
+                <span id="btnEditar" onclick="editarPedra()" class="bg-blue-300 hover:bg-blue-500 rounded-lg px-2 py-1 text-white absolute top-0 right-0 text-sm">Editar</span>
+            </div>
         </div>
 
 
@@ -65,11 +71,7 @@
     <button onclick="fecharModal()" class="bg-verde px-4 py-2 m-auto block text-white rounded-md">OK</button>
 </section>
 
-<script>
-    function fecharModal(){
-        document.getElementById('ganhadores').style.display = 'none'
-    }
-</script>
+
 
 
 

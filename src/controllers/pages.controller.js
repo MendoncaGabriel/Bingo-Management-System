@@ -39,7 +39,6 @@ module.exports = {
                 console.error("Erro ao criar PDF:", error);
             }
         },
-        
         registerSold: async (req, res) => {
             try {                
                 const cards = await cardModel.getByList()

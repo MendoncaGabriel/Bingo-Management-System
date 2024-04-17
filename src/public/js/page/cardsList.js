@@ -37,3 +37,23 @@ function buildPDF(id) {
     });
 }
 
+
+
+async function trancar(id){
+    const resposta = prompt('Deseja realmente trancar isto? Uma vez trancado, não será mais possível editar, nem gerar um PDF novamente. Confirmar: sim/não')
+    if(resposta == 'sim'){
+
+        const res = await fetch('/card/trancar/' + id, {
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json'}
+        }) 
+        const resJson = await res.json()
+        if(res.status == 200){
+            alert('Item trancado com sucesso!')
+            window.location.reload()
+        }else{
+            alert('Erro ao trancar item!')
+        }
+        console.log(resJson)
+    }
+}

@@ -5,6 +5,7 @@ const rankList = document.querySelector('#rankList')
 const pedrasDigitadas = document.querySelector('#pedrasDigitadas')
 const ultimaPedra = document.querySelector('#ultimaPedra')
 const btnLimpar = document.querySelector('#btnLimpar')
+const btnEditar = document.querySelector('#btnEditar')
 
 let bingos = []
 const pedras = []
@@ -29,7 +30,6 @@ function verificarColuna(i){
     return i
 }
 
-
 //selecionar deck de cartelas
 bingoSelect.addEventListener('change', (e)=>{
     const id = bingoSelect.value
@@ -46,22 +46,21 @@ bingoSelect.addEventListener('change', (e)=>{
     })
 })
 
-
 //inserir pedras
 insertPedra.addEventListener('change', (e)=>{
+    const pedra =  insertPedra.value
+
+    // valida valor inserido
     if(bingoSelect.value == ''){
         alert('Selecione Um Jogo!')
         insertPedra.value = ''
         return
     }
-
-    const pedra =  insertPedra.value
     if(pedra > bingoPattern || pedra <= 0){
         alert('Fora de Escala!')
         insertPedra.value = ''
         return
     }
-
     if(!pedras.includes(Number(pedra))){
         if(pedras.length >= bingoPattern){
             alert("JOGO ENCERRADO!")
@@ -92,13 +91,8 @@ insertPedra.addEventListener('change', (e)=>{
         lista += `<li class="p-2  flex items-center justify-center rounded-xl bg-white text-verde font-semibold text-lg w-10 h-10 flex-none ">${verificarColuna(i)}</li>`
     }
     pedrasDigitadas.innerHTML = lista
-
-
-
     verificar()
 })
-
-
 
 function verificar() {
     const ocorrencias = []
@@ -131,7 +125,6 @@ if(localStorage.rank){
     const ordenado = JSON.parse(localStorage.rank)
     renderRank(ordenado)
 }
-
 
 if(localStorage.pedras || localStorage.rank){
     btnLimpar.classList.remove('hidden')
@@ -171,8 +164,6 @@ function renderRank(ocorrencias){
 
 }
 
-
-
 function ganhadores(data){
     console.log('Ganhadores Existentes: ', contGanhadores)
     console.log('Ganhadores Atuais: ', data.length)
@@ -196,8 +187,6 @@ function ganhadores(data){
     }
 
 }
-
-
 
 function jogar(){
 
@@ -260,12 +249,6 @@ function jogar(){
     
 }
 
-
-
-  
-
-
-
 let look = true
 function telacheia(){
 
@@ -291,4 +274,28 @@ function telacheia(){
         look = true
     }
     
+}
+
+function fecharModal(){
+    document.getElementById('ganhadores').style.display = 'none'
+}
+
+function editarPedra(){
+    let comprimento = pedrasDigitadas.childNodes.length
+    let ultimaLi = pedrasDigitadas.childNodes[comprimento -1]
+ 
+
+    if(localStorage.pedras && localStorage.pedras != '[]'){
+        let pedrasLocalStorage = JSON.parse(localStorage.pedras)
+        let ultima = pedrasLocalStorage[pedrasLocalStorage.length  -1]
+        insertPedra.value = ultima
+        ultimaPedra.innerText = verificarColuna(ultima)
+        insertPedra.focus();
+        pedrasLocalStorage.pop();
+        pedras.pop();
+        ultimaLi.remove()
+ 
+        localStorage.pedras = JSON.stringify(pedrasLocalStorage)
+        verificar()
+    }
 }

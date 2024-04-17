@@ -1,7 +1,7 @@
 const cardSchema = require('../database/models/cardSchema')
 const bingoGenerator =  require('../model/bingoGenerator')
 
-module.exports = {
+const model = {
     create: async (data) => {
         try {
             const newObject = data
@@ -55,6 +55,18 @@ module.exports = {
         
         } catch (error) {
             throw console.error('Erro pegar item na base de dados por lista sort!', error);
+        }
+    },
+    trancar: async (id) => {
+        try {
+            
+            const res = await cardSchema.findByIdAndUpdate(id, {trancado: true}, { new: true })
+            if(res){
+                return 'ok'
+            }
+        } catch (error) {
+            console.log(error)
+            throw console.error('Erro no model update ao atualizar item na base de dados!', error);
         }
     },
     update: async (id, data) => {
@@ -139,3 +151,4 @@ module.exports = {
     }
 
 }
+module.exports = model;

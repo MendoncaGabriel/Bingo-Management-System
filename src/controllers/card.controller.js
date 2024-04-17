@@ -1,6 +1,6 @@
 const cardModel = require('../model/cardModel')
 
-module.exports = {
+const controller = {
     create: async (req, res) => {
         try {
             if (!req.file || !req.file.filename) {
@@ -45,6 +45,7 @@ module.exports = {
             if(req.file){
                 data.background = req.file.filename
             }
+  
       
             const updatedCard = await cardModel.update(req.params.id, data)
             if (!updatedCard) {
@@ -79,5 +80,20 @@ module.exports = {
         const result = await cardModel.getByListSold(id)
        
         res.status(200).json(result)
+    },
+    trancar: async (req, res) => {
+        try {
+            const id = req.params.id
+            const resposta = await cardModel.trancar(id)
+            console.log(resposta)
+            if(resposta == 'ok'){
+                res.status(200).json({msg: 'Item trancado com sucesso!'})
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ msg: 'Erro interno no servidor', error });
+        }
     }
 }
+
+module.exports = controller;
