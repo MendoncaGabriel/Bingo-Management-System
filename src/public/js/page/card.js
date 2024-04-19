@@ -11,9 +11,6 @@ function deleteCard(id){
             }
             res.json()
         })
-        .then(res => {
-            console.log(res)
-        })
         .catch((err) => {
             console.error('Error during fetch:', err);
         });
@@ -45,14 +42,9 @@ function updateCard(cardId) {
     })
         .then((res) => {
             if (res.status === 200) {
-                console.log(res.status);
                 window.location.href = '/cartelas';
             }
             return res.json();
-        })
-        .then((res) => {
-            console.log(res);
-            // Lógica adicional após a atualização, se necessário
         })
         .catch((err) => {
             console.error('Error during fetch:', err);

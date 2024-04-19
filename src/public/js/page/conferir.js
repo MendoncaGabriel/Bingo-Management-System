@@ -10,7 +10,7 @@ const btnEditar = document.querySelector('#btnEditar')
 let bingos = []
 const pedras = []
 let bingoPattern = 0
-var contGanhadores = 0;
+
 
 function verificarColuna(i){
     if(bingoPattern == 75){
@@ -116,7 +116,6 @@ function verificar() {
     }
 
     const ordenado = ocorrencias.sort((a, b) => b.cont - a.cont)
-    console.log(ordenado)
     localStorage.rank = JSON.stringify(ordenado)
     renderRank(ordenado)
 }
@@ -146,44 +145,35 @@ function renderRank(ocorrencias){
     // Definindo o limite do loop com base no comprimento de ocorrencias
     const limiteLoop = Math.min(ocorrencias.length, 5);
 
-    let ganha = []
+    let contGanadores = 0
 
     // Loop para renderizar até 10 elementos, ou menos se ocorrencias.length for menor que 10
     for(let i = 0; i < limiteLoop; i++){ 
+       
         rankList.innerHTML += `<li class=" ${ocorrencias[i].cont >= 25 ? 'bg-blue-600 text-white' : 'bg-white text-verde'} px-2 py-1 rounded-full  text-center font-semibold text-lg">N: ${ocorrencias[i].cont} - ${ocorrencias[i].item.name} </li>`;
-       if(ocorrencias[i].cont >= 25){
-        ganha.push(ocorrencias[i])
-       }  
+        ocorrencias[i].cont >= 25 ? contGanadores++ : ''
     }
 
-    if(ganha.length > 0){
+    ganhadores(contGanadores)
 
-        ganhadores(ganha)
-        contGanhadores = ganha.length
-    }
 
 }
 
+if(!localStorage.contGanhadores) {
+    localStorage.contGanhadores = '0'
+}
+
 function ganhadores(data){
-    console.log('Ganhadores Existentes: ', contGanhadores)
-    console.log('Ganhadores Atuais: ', data.length)
 
-    if(contGanhadores == 0){
-        contGanhadores = data.length
-        console.log('Atualizado Ganhadores Existentes', contGanhadores)
-    }
 
-    // verificar pois não esta aparecendo !!
-    // editar ultma pedra!
-    // trancar uma cartela
-    // ajustar tamnaho do bingo na cartela
 
-    if(data.lengh > contGanhadores){
-       
+    if(data > Number(localStorage.contGanhadores)){
         document.getElementById('ganhadores').classList.remove('hidden')
         document.getElementById('ganhadores').style.display = 'block'
 
-        return
+        let atual = data
+        localStorage.contGanhadores = JSON.stringify(data)
+        
     }
 
 }

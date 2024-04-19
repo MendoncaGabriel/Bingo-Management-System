@@ -10,7 +10,6 @@ const controller = {
             const data = req.body;
     
             if (!data.title  || !data.bingosForCards || !data.NumberOfCards || !data.bingoPattern) {
-                console.log('Informações faltando para criação de bingo - ( crad.contoller.js exports.create )')
                 return res.status(400).json({ msg: 'Informações faltando!' });
             }
     
@@ -85,7 +84,6 @@ const controller = {
         try {
             const id = req.params.id
             const resposta = await cardModel.trancar(id)
-            console.log(resposta)
             if(resposta == 'ok'){
                 res.status(200).json({msg: 'Item trancado com sucesso!'})
             }

@@ -21,7 +21,7 @@ function buildPDF(id) {
     // Registra o novo clique para o ID
     ultimosCliquesPorId.set(id, agora);
 
-    console.log('Iniciando...');
+
 
     fetch(`/cartela/${id}`, {
         method: 'GET',
@@ -30,7 +30,6 @@ function buildPDF(id) {
     .then(res => res.json())
     .then(res => {
         alert(res.msg);
-        console.log(res);
     })
     .catch(error => {
         console.error(error);
@@ -54,6 +53,6 @@ async function trancar(id){
         }else{
             alert('Erro ao trancar item!')
         }
-        console.log(resJson)
+
     }
 }

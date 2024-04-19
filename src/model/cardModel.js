@@ -76,7 +76,6 @@ const model = {
             if(datacard.NumberOfCards != data.NumberOfCards){
                 data.bingoCards = []
                 data.bingoCards =  await bingoGenerator(data.NumberOfCards, data.bingoPattern);
-                console.log('Numero de cartelas por pagina mudou!, gerando novos Bingos')
             }
      
 
@@ -95,10 +94,8 @@ const model = {
     },
     markAsSold: async (data) => {
         try {
-           console.log('DATA:', data)
-           // Verificar se o item com o mesmo índice já está no array 'bingosSold'
            const existingItem = await cardSchema.findOne({ _id: data.cartela_id, 'bingosSold.index': data.index });
-           console.log('existingItem:', existingItem)
+  
 
             const bingo = await cardSchema.findById(data.cartela_id)
          

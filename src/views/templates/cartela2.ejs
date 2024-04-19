@@ -13,13 +13,11 @@
             margin: 0;
             box-sizing: border-box;
         }
-
         body {
-           
+
             width: 209.9mm;
             height: 296.86mm;
         }
-
         .folha{
             width: 209.9mm;
             height: 296.86mm;
@@ -29,7 +27,6 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-
         .num_cartela {
             width: 49.30mm;
             height: 17.43mm;
@@ -43,11 +40,11 @@
         }
 
         .canhoto {
-            top: 26.05mm;
+            top: 27mm; /*26.05*/
         }
 
         .nao_canhoto {
-            top: 52.33mm;
+            top: 53mm; /*52.33mm;*/
         }
 
         .bingo {
@@ -66,31 +63,25 @@
             border-style: dashed;
         }
         .grid-container {
-  width: 100%;
-  overflow: hidden; /* Limpa o float */
-}
-
-.grid-item {
-  width: 10mm; /* Define cada coluna com 20% de largura para 5 colunas */
-  height: 10.1mm;
-  float: left; /* Alinha os itens à esquerda */
-  border: 1px solid #dcdcdc; /* Adiciona borda */
-  text-align: center; /* Centraliza o texto */
-  background-color: #f9f9f9; /* Cor de fundo */
-  /* padding-top: 2mm; */
-  line-height: 10.1mm;
-
-}
-.b{
-    font-weight: bold;
-    background-color: rgb(195, 195, 195);
-    border: none;
-}
-
-     
+            width: 100%;
+            overflow: hidden; 
+        }
+        .grid-item {
+            width: 10mm; 
+            height: 10.1mm;
+            float: left;
+            border: 1px solid #dcdcdc;
+            text-align: center;
+            background-color: #f9f9f9;
+            line-height: 10.1mm;
+        }
+        .b{
+            font-weight: bold;
+            background-color: rgb(195, 195, 195);
+            border: none;
+        }
     </style>
 </head>
-
 <body>
 
     <%
@@ -152,7 +143,7 @@
     switch (escolha) {
         case 1:
         geral += `
-        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5mm;">
             ${gerarBingo(bingos[i])}
         </div>
         `
@@ -160,10 +151,10 @@
 
         case 2:
         geral += `
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5mm;">
            ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 5mm; margin-left: 154.94mm;">
             ${gerarBingo(bingos[i])}
         </div>
         `
@@ -171,13 +162,13 @@
 
         case 3:
         geral += `
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 5mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
         `
@@ -185,16 +176,16 @@
         
         case 4:
         geral += `
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 39%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 72mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 39%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 72mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 5mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
         `
@@ -202,19 +193,19 @@
 
         case 5:
         geral += `
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 39%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 72mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 39%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 72mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 5mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
         `
@@ -222,22 +213,22 @@
 
         case 6:
         geral += `
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 39%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 72mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 16.67mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 39%;">
+        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 72mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5%;">
+        <div class="bingo" style="margin-left: 85.52mm; bottom: 0; margin-bottom: 5mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 39%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 72mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
-        <div class="bingo" style="bottom: 0; margin-bottom: 5%; margin-left: 154.94mm;">
+        <div class="bingo" style="bottom: 0; margin-bottom: 5mm; margin-left: 154.94mm;">
              ${gerarBingo(bingos[i])}
         </div>
         `
