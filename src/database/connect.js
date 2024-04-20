@@ -1,11 +1,13 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-const URLCONNECT_DB = 'mongodb://mongo:Gam1997SantoBingo@217.196.62.165:27017/bingo'
+const URLCONNECT_DB = process.env.URLCONNECT_DB
 module.exports = mongoose.connect(URLCONNECT_DB)
 .then(()=>{
 	console.log('Conectado ao banco de dados!')
+	console.log('===> ',URLCONNECT_DB)
 })
 .catch((erro)=>{
-	console.log(erro)
+	console.log('===> ', URLCONNECT_DB)
+	console.log('Erro ao se conectar no banco de dados', erro)
 })
