@@ -4,7 +4,6 @@ const URLCONNECT_DB = process.env.URLCONNECT_DB
 module.exports = mongoose.connect(URLCONNECT_DB)
 .then(()=>{
 	console.log('Conectado ao banco de dados!')
-	console.log('===> ',URLCONNECT_DB)
 })
 .catch((erro)=>{
 	console.log('===> ', URLCONNECT_DB)
