@@ -117,7 +117,7 @@
                         </td>
                         <td class="px-6 py-4 border border-gray-200 overflow-hidden ">
                             <% if (typeof element.title != "undefined" && element.title) { %>                                     
-                                <a href="/pdf/<%= element.title  %>.pdf" target="_blank"  class="font-medium text-blue-600  hover:underline m-auto block">
+                                <a href="/pdf/<%= element.title?.replace(/ /g, '-')  %>.pdf" target="_blank"  class="font-medium text-blue-600  hover:underline m-auto block">
                                     Abrir
                                 </a>
                             <% } %>
